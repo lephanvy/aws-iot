@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-2">
+    progress bar here
+  </div>
+  <div class="col-md-5">
+    <div class="readmin-panel">
+      <div class="panel-heading">
+        <h5>Level</h5>
+      </div>
+      <div class="panel-body">
+        <md-input-container>
+          <input [(ngModel)]="sp" mdInput placeholder="SP" value="" >
+        </md-input-container>
+  
+        <md-input-container class="example-full-width">
+          <input mdInput placeholder="" value="">
+        </md-input-container>
+  
+        <!-- <md-input-container class="example-full-width">
+          <span mdPrefix>+1 &nbsp;</span>
+          <input type="tel" mdInput placeholder="Telephone">
+          <md-icon mdSuffix>mode_edit</md-icon>
+        </md-input-container> -->
+  
+        <button md-raised-button color="primary" class="text-uppercase full-width" (click)="setValue()">Set value</button>
+  
+        
+  
+      </div>
+    </div>
+    <div class="readmin-panel">
+      <div class="panel-heading">
+        <h5>Pump</h5>
+      </div>
+      <div class="panel-body">
+        <md-input-container>
+          <input mdInput placeholder="SP" value="">
+        </md-input-container>
+  
+       
+  
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-3">
+      <div class="readmin-panel">
+        <div class="panel-heading">
+          <h5></h5>
+        </div>
+      </div>
+  </div>
+</div>
