@@ -14,6 +14,9 @@ import { BarChartService } from './services/bar-chart.service';
 import { AreaChartService } from './services/area-chart.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { UserLoginService } from './services/login.service';
+import { AuthGuardService } from './services/auth-guard.service';
+import { CognitoUtil } from './services/auth.service';
 // import { ControlComponent } from './page/control/control.component';
 
 
@@ -35,7 +38,11 @@ import { FormsModule } from '@angular/forms';
   providers: [
     MenuToggleService, 
     BarChartService,
-    AreaChartService
+    AreaChartService,
+    UserLoginService,
+    AuthGuardService,
+    CognitoUtil,
+      
   ],
   bootstrap: [AppComponent]
 })

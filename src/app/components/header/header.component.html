@@ -7,19 +7,10 @@
 
     <span class="example-spacer"></span>
 
-    <button md-mini-fab (click)="showNotification = !showNotification" >
-      <md-icon>notifications</md-icon>
-    </button>
-
     <md-card class="example-card" [mdMenuTriggerFor]="appMenu">
       <div md-card-avatar class="example-header-image" [ngStyle]="{ 'background-image': 'url(' + image + ')'}"></div>
     </md-card>
   </md-toolbar>
-
-  <div [ngClass]="notificationClasses()">
-    <app-notifications></app-notifications>
-  </div>
-
   <md-menu #appMenu="mdMenu">
     <button md-menu-item>
       <md-icon>settings</md-icon>

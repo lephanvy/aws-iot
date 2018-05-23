@@ -4,20 +4,15 @@
       <h3>Login <a href="">Forgot Password?</a></h3>
       <form action="#">
         <md-input-container class="full-width">
-          <input mdInput placeholder="User name or Email" >
+          <input mdInput placeholder="User name or Email" [(ngModel)]="username"
+          [ngModelOptions]="{standalone: true}">
         </md-input-container>
         <md-input-container class="full-width">
-          <input mdInput type="password" placeholder="Password">
+          <input mdInput type="password" placeholder="Password" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
         </md-input-container>
+       
         <div class="pt20">
-          <md-checkbox
-            class="example-margin"
-            [indeterminate]="indeterminate">
-            Remember me
-          </md-checkbox>
-        </div>
-        <div class="pt20">
-          <button md-raised-button color="primary" class="full-width">Log In</button>
+          <button md-raised-button color="primary" class="full-width" type="submit" (click)="onLogin()">Log In</button>
         </div>
 
       </form>

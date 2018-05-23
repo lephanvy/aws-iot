@@ -12,7 +12,6 @@ import { AgmCoreModule } from '@agm/core';
 import 'hammerjs';
 import { HeaderComponent } from '../components/header/header.component';
 import { FooterComponent } from '../components/footer/footer.component';
-import { NotificationsComponent } from '../components/notifications/notifications.component';
 import { SidebarComponent } from '../components/sidebar/sidebar.component';
 import { TinyBarChartComponent } from '../charts/tiny-bar-chart/tiny-bar-chart.component';
 import { TinyAreaChartComponent } from '../charts/tiny-area-chart/tiny-area-chart.component';
@@ -24,9 +23,7 @@ import { TotalSalesComponent } from '../components/total-sales/total-sales.compo
 import { BarChartComponent } from '../charts/bar-chart/bar-chart.component';
 import { UserTableComponent } from '../components/user-table/user-table.component';
 import { IconBoxAlterComponent } from '../components/icon-box-alter/icon-box-alter.component';
-import { ProductsTableComponent } from '../components/products-table/products-table.component';
 import { IconMenuComponent } from '../components/icon-menu/icon-menu.component';
-import { ProductsGridComponent } from '../components/products-grid/products-grid.component';
 import { OrderReviewComponent } from '../components/order-review/order-review.component';
 import { ButtonsComponent } from '../components/ui-elements/buttons/buttons.component';
 import { AppBarsComponent } from '../components/ui-elements/app-bars/app-bars.component';
@@ -49,10 +46,7 @@ import { BasicFormsComponent } from '../components/forms/basic-forms/basic-forms
 import { SwitchesComponent } from '../components/forms/switches/switches.component';
 import { FormLayoutsComponent } from '../components/forms/form-layouts/form-layouts.component';
 import { AutoCompleteComponent } from '../components/forms/basic-forms/auto-complete/auto-complete.component';
-import { AboutUsComponent } from '../components/pages/about-us/about-us.component';
-import { ServicesComponent } from '../components/pages/services/services.component';
 import { ContactUsComponent } from '../components/pages/contact-us/contact-us.component';
-import { BlogComponent } from '../components/pages/blog/blog.component';
 import { PricingTableComponent } from '../components/pages/pricing-table/pricing-table.component';
 import { FaqComponent } from '../components/pages/faq/faq.component';
 import { LoginComponent } from '../components/other-pages/login/login.component';
@@ -94,7 +88,6 @@ import { CommonModule } from '@angular/common';
   exports: [
     HeaderComponent,
     FooterComponent,
-    NotificationsComponent,
     SidebarComponent,
     TinyBarChartComponent,
     TinyAreaChartComponent,
@@ -106,9 +99,7 @@ import { CommonModule } from '@angular/common';
     BarChartComponent,
     UserTableComponent,
     IconBoxAlterComponent,
-    ProductsTableComponent,
     IconMenuComponent,
-    ProductsGridComponent,
     OrderReviewComponent,
     ButtonsComponent,
     AppBarsComponent,
@@ -128,10 +119,7 @@ import { CommonModule } from '@angular/common';
     SwitchesComponent,
     FormLayoutsComponent,
     AutoCompleteComponent,
-    AboutUsComponent,
-    ServicesComponent,
     ContactUsComponent,
-    BlogComponent,
     PricingTableComponent,
     FaqComponent,
     LoginComponent,
@@ -159,7 +147,67 @@ import { CommonModule } from '@angular/common';
     PieGridChartComponent,
     GaugeChartComponent
   ],
-  declarations: [HeaderComponent, FooterComponent, NotificationsComponent, SidebarComponent, TinyBarChartComponent, TinyAreaChartComponent, TinyLineChartComponent, IconBoxComponent, TotalEarnsComponent, AreaChartComponent, TotalSalesComponent, BarChartComponent, UserTableComponent, IconBoxAlterComponent, ProductsTableComponent, IconMenuComponent, ProductsGridComponent, OrderReviewComponent, ButtonsComponent, AppBarsComponent, SimpleUisComponent, CardsComponent, SlidersComponent, DatePickersComponent, TimePickersComponent, DialogsComponent, TabsComponent, ProgressComponent, ListsComponent, MenusComponent, GridListComponent, GridsComponent, BasicFormsComponent, SwitchesComponent, FormLayoutsComponent, AutoCompleteComponent, AboutUsComponent, ServicesComponent, ContactUsComponent, BlogComponent, PricingTableComponent, FaqComponent, LoginComponent, RegisterComponent, ForgotPasswordComponent, ConfirmMailComponent, Error404Component, LayoutDefaultComponent, LayoutBannerComponent, SimpleDialog, DialogWithFooter, DialogWithContextualHeading, BootstrapTablesComponent, MaterialTablesComponent, TableWithSortingComponent, TableWithFilteringComponent, SortHeaderComponent, SnackbarComponent, MapComponent, HorizontalBarChartComponent, StackedBarChartComponent, HorizontalStackedBarChartComponent, LineChartComponent, PieChartComponent, PieGridChartComponent, GaugeChartComponent],
+  declarations: [
+    HeaderComponent,
+    FooterComponent, 
+    SidebarComponent,
+     TinyBarChartComponent, 
+     TinyAreaChartComponent, 
+     TinyLineChartComponent, 
+     IconBoxComponent, 
+     TotalEarnsComponent,
+      AreaChartComponent, 
+      TotalSalesComponent, 
+      BarChartComponent, 
+      UserTableComponent, 
+      IconBoxAlterComponent, 
+       IconMenuComponent, 
+       OrderReviewComponent, 
+       ButtonsComponent, 
+       AppBarsComponent, 
+       SimpleUisComponent, 
+       CardsComponent, 
+       SlidersComponent, 
+       DatePickersComponent, 
+       TimePickersComponent, 
+       DialogsComponent, 
+       TabsComponent, 
+       ProgressComponent, 
+       ListsComponent, 
+       MenusComponent, 
+       GridListComponent, 
+       GridsComponent,
+        BasicFormsComponent, 
+        SwitchesComponent,
+         FormLayoutsComponent, 
+         AutoCompleteComponent, 
+         ContactUsComponent,
+          PricingTableComponent,
+           FaqComponent, 
+           LoginComponent, 
+           RegisterComponent, 
+           ForgotPasswordComponent, 
+           ConfirmMailComponent, 
+           Error404Component, 
+           LayoutDefaultComponent, 
+           LayoutBannerComponent, 
+           SimpleDialog, 
+           DialogWithFooter, 
+           DialogWithContextualHeading, 
+           BootstrapTablesComponent, 
+           MaterialTablesComponent, 
+           TableWithSortingComponent,
+            TableWithFilteringComponent, 
+            SortHeaderComponent,
+             SnackbarComponent, 
+             MapComponent, 
+             HorizontalBarChartComponent, 
+             StackedBarChartComponent, 
+             HorizontalStackedBarChartComponent,
+              LineChartComponent,
+               PieChartComponent, 
+               PieGridChartComponent,
+                GaugeChartComponent],
   entryComponents: [ SimpleDialog, DialogWithFooter, DialogWithContextualHeading]
 
 })
