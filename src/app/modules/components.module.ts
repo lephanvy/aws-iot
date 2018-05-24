@@ -46,9 +46,7 @@ import { BasicFormsComponent } from '../components/forms/basic-forms/basic-forms
 import { SwitchesComponent } from '../components/forms/switches/switches.component';
 import { FormLayoutsComponent } from '../components/forms/form-layouts/form-layouts.component';
 import { AutoCompleteComponent } from '../components/forms/basic-forms/auto-complete/auto-complete.component';
-import { ContactUsComponent } from '../components/pages/contact-us/contact-us.component';
-import { PricingTableComponent } from '../components/pages/pricing-table/pricing-table.component';
-import { FaqComponent } from '../components/pages/faq/faq.component';
+
 import { LoginComponent } from '../components/other-pages/login/login.component';
 import { RegisterComponent } from '../components/other-pages/register/register.component';
 import { ForgotPasswordComponent } from '../components/other-pages/forgot-password/forgot-password.component';
@@ -119,9 +117,7 @@ import { CommonModule } from '@angular/common';
     SwitchesComponent,
     FormLayoutsComponent,
     AutoCompleteComponent,
-    ContactUsComponent,
-    PricingTableComponent,
-    FaqComponent,
+   
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
@@ -181,9 +177,7 @@ import { CommonModule } from '@angular/common';
         SwitchesComponent,
          FormLayoutsComponent, 
          AutoCompleteComponent, 
-         ContactUsComponent,
-          PricingTableComponent,
-           FaqComponent, 
+        
            LoginComponent, 
            RegisterComponent, 
            ForgotPasswordComponent, 
