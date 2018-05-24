@@ -45,10 +45,11 @@ export class CognitoUtil {
         UserPoolId: CognitoUtil._USER_POOL_ID,
         ClientId: CognitoUtil._CLIENT_ID
     };
-
+    
     public cognitoCreds: AWS.CognitoIdentityCredentials;
 
     getUserPool() {
+        console.log(CognitoUtil._POOL_DATA)
         if (environment.cognito_idp_endpoint) {
             CognitoUtil._POOL_DATA.endpoint = environment.cognito_idp_endpoint;
         }
@@ -56,6 +57,7 @@ export class CognitoUtil {
     }
 
     getCurrentUser() {
+        console.log(this.getUserPool())
         return this.getUserPool().getCurrentUser();
     }
 

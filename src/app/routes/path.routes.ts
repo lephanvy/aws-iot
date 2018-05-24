@@ -10,10 +10,13 @@ import { ForgotPassPageComponent } from '../pages/forgot-pass-page/forgot-pass-p
 import { ConfirmMailPageComponent } from '../pages/confirm-mail-page/confirm-mail-page.component';
 import { ErrorPageComponent } from '../pages/error-page/error-page.component';
 import { ControlComponent } from '../pages/control/control.component';
+import { ButtonsComponent } from '../components/ui-elements/buttons/buttons.component';
+import { ButtonsPageComponent } from '../pages/buttons-page/buttons-page.component';
 
 export const routesPath = [
   { path: '', component: HomeComponent },
   { path: 'controls', component: ControlComponent},
   { path: 'trend', component: ChartLinePageComponent},
-  { path: 'login', component: LoginPageComponent}
+  { path: 'login', component: LoginPageComponent},
+  {path: 'button', component: ButtonsPageComponent}
 ];

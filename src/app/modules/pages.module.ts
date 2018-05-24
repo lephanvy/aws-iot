@@ -21,6 +21,7 @@ import { ErrorPageComponent } from '../pages/error-page/error-page.component';
 import { CommonModule } from '@angular/common';
 import { ControlComponent } from '../pages/control/control.component';
 import { FormsModule } from '@angular/forms';
+import { ButtonsPageComponent } from '../pages/buttons-page/buttons-page.component';
 
 export const ROUTES: Routes = routesPath;
 
@@ -45,8 +46,8 @@ export const ROUTES: Routes = routesPath;
     ForgotPassPageComponent,
     ConfirmMailPageComponent,
     ErrorPageComponent,
-    ControlComponent
-
+    ControlComponent,
+    ButtonsPageComponent
   ],
   declarations: [
     HomeComponent,
@@ -60,7 +61,9 @@ export const ROUTES: Routes = routesPath;
     ForgotPassPageComponent,
     ConfirmMailPageComponent,
     ErrorPageComponent,
-    ControlComponent],
+    ControlComponent,
+    ButtonsPageComponent
+  ],
 
 })
 export class PagesModule { }

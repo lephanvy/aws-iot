@@ -8,8 +8,15 @@ import * as AWS from 'aws-sdk';
 })
 export class ControlComponent implements OnInit {
   sp: number;
+  pv;
+  freq;
   temperature;
   client;
+  value = 50;
+  color = 'primary';
+  mode = 'indeterminate';
+  modeOne = 'determinate';
+
   constructor() { }
 
   ngOnInit() {
@@ -83,6 +90,25 @@ export class ControlComponent implements OnInit {
     // });
   }
   setValue(){
-    this.client.publish('temperature', this.sp);
+    if(this.sp){
+      this.client.publish('temperature', this.sp);
+    }
+
+    if(this.pv){
+      this.client.publish('temperature', this.sp);
+    }
+
+    if(this.freq){
+      this.client.publish('temperature', this.sp);
+    }
+    
+  }
+
+  start(){
+      this.client.publish('status', true);
+  }
+
+  stop(){
+    this.client.publish('status', false);
   }
 }

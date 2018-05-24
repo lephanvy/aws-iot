@@ -1,6 +1,15 @@
 <div class="row">
-  <div class="col-md-2">
-    progress bar here
+  <div class="col-md-3">
+    <div class="readmin-panel">
+      <div class="panel-heading">
+        <h5>Progress spinner</h5>
+      </div>
+      <div class="panel-body">
+        <md-progress-spinner class="example-margin" [color]="color" [mode]="modeOne" [value]="value">
+        </md-progress-spinner>
+
+      </div>
+    </div>
   </div>
   <div class="col-md-5">
     <div class="readmin-panel">
@@ -9,23 +18,23 @@
       </div>
       <div class="panel-body">
         <md-input-container>
-          <input [(ngModel)]="sp" mdInput placeholder="SP" value="" >
+          <input [(ngModel)]="sp" mdInput placeholder="SP" value="">
         </md-input-container>
-  
+
         <md-input-container class="example-full-width">
-          <input mdInput placeholder="" value="">
+          <input [(ngModel)]="pv" mdInput placeholder="" value="">
         </md-input-container>
-  
+
         <!-- <md-input-container class="example-full-width">
           <span mdPrefix>+1 &nbsp;</span>
           <input type="tel" mdInput placeholder="Telephone">
           <md-icon mdSuffix>mode_edit</md-icon>
         </md-input-container> -->
-  
-        <button md-raised-button color="primary" class="text-uppercase full-width" (click)="setValue()">Set value</button>
-  
-        
-  
+
+
+
+
+
       </div>
     </div>
     <div class="readmin-panel">
@@ -34,20 +43,73 @@
       </div>
       <div class="panel-body">
         <md-input-container>
-          <input mdInput placeholder="SP" value="">
+          <input [(ngModel)]="freq" mdInput placeholder="Hz" value="">
         </md-input-container>
-  
-       
-  
+
+
+
       </div>
     </div>
-  </div>
-  
-  <div class="col-md-3">
-      <div class="readmin-panel">
-        <div class="panel-heading">
-          <h5></h5>
-        </div>
+    <div class="readmin-panel">
+
+      <div class="panel-body">
+        <button md-raised-button color="primary" class="text-uppercase full-width" (click)="setValue()">Set value</button>
+        <button md-raised-button color="primary" class="with-icon" style="width: 50%;" (click)="start()">
+          <md-icon>play_arrow</md-icon> Start</button>
+        <button md-raised-button color="warn" class="with-icon" style="width: 50%;" (click)="stop()">
+          <md-icon>stop</md-icon>Stop</button>
       </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-4">
+      <div class="readmin-panel">
+          <div class="panel-heading">
+            <h5>Table Condensed</h5>
+          </div>
+          <div class="panel-body">
+            <table class="table table-condensed">
+              <thead>
+                <tr>
+                 
+                  <th>Name</th>
+                  <th>Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>SP</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>PV1</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  
+                  <td>PV2</td>
+                  <td></td>
+                </tr>
+                <tr>
+                  
+                    <td>Kp</td>
+                    <td></td>
+                  </tr>
+                  <tr>
+                  
+                      <td>Ki</td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                  
+                        <td>Kd</td>
+                        <td></td>
+                      </tr>
+              </tbody>
+            </table>
+        
+          </div>
+        </div>
   </div>
 </div>

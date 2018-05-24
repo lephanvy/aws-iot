@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements CognitoCallback , LoggedInCallback ,OnInit {
   errorMessage: string;
-  email: string;
+  username: string;
   password: string;
   constructor(
     private loginService: UserLoginService,
@@ -24,20 +24,20 @@ export class LoginComponent implements CognitoCallback , LoggedInCallback ,OnIni
 
   }
   cognitoCallback(message: string, result: any) {
-    // if (message != null) { //error
-    //     this.errorMessage = message;
-    //     console.log("result: " + this.errorMessage);
-    //     if (this.errorMessage === 'User is not confirmed.') {
-    //         console.log("redirecting");
-    //         this.router.navigate(['/home/confirmRegistration', this.email]);
-    //     } else if (this.errorMessage === 'User needs to set password.') {
-    //         console.log("redirecting to set new password");
-    //         this.router.navigate(['/home/newPassword']);
-    //     }
-    // } else { //success
-    //     // this.ddb.writeLogEntry("login");
-    //     this.router.navigate(['/securehome']);
-    // }
+    if (message != null) { //error
+        this.errorMessage = message;
+        console.log("result: " + this.errorMessage);
+        if (this.errorMessage === 'User is not confirmed.') {
+            console.log("redirecting");
+            //this.router.navigate(['/home/confirmRegistration', this.email]);
+        } else if (this.errorMessage === 'User needs to set password.') {
+            console.log("redirecting to set new password");
+           // this.router.navigate(['/home/newPassword']);
+        }
+    } else { //success
+        // this.ddb.writeLogEntry("login");
+        this.router.navigate(['/securehome']);
+    }
 
     
 }
@@ -48,11 +48,13 @@ isLoggedIn(message: string, isLoggedIn: boolean) {
   }
 }
 onLogin() {
-  if (this.email == null || this.password == null) {
+  console.log('click');
+  if (this.username == null || this.password == null) {
       this.errorMessage = "All fields are required";
+      console.log('require')
       return;
   }
   this.errorMessage = null;
-  this.loginService.authenticate(this.email, this.password, this);
+  this.loginService.authenticate(this.username, this.password, this);
 }
 }
