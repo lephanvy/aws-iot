@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuToggleService } from '../../services/menu-toggle.service';
+import { UserLoginService } from '../../services/login.service';
 
 declare var jquery:any;
 declare var $ :any;
@@ -34,7 +35,8 @@ export class HeaderComponent implements OnInit {
     return classes;
   }
 
-  constructor(public isToggle : MenuToggleService) {
+  constructor(public isToggle : MenuToggleService,
+  private userSerivce: UserLoginService) {
   }
 
 
@@ -59,4 +61,7 @@ export class HeaderComponent implements OnInit {
   toggleSidebar() {
     return this.isToggle.onToggleMenu();
   }
+  logout(){
+      this.userSerivce.logout()
+  } 
 }

@@ -94,6 +94,18 @@ export class CognitoUtil {
             serviceConfigs.endpoint = environment.cognito_identity_endpoint;
         }
         let creds = new AWS.CognitoIdentityCredentials(params, serviceConfigs);
+        AWS.config.update({region: CognitoUtil._REGION});
+        console.log(creds);
+        creds.get((error) => {
+            if (error) {
+                alert(error);
+                return;
+            }
+        
+            const { accessKeyId, secretAccessKey, sessionToken } = creds;
+        
+            console.log(creds)
+        });
         this.setCognitoCreds(creds);
         return creds;
     }
