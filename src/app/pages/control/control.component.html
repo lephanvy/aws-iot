@@ -2,12 +2,17 @@
 <!-- Colum 1-->
   <div class="col-md-3">
     <div class="readmin-panel">
-      <div class="panel-heading">
-        <h5>Level</h5>
-      </div>
-         <div class="panel-body">
-            <md-progress-spinner class="example-margin" [color]="color" [mode]="modeOne" [value]="value">
-            </md-progress-spinner>
+               <div class="panel-body">
+            <fusioncharts
+      [id]="id"
+      [width]="width"
+      [height]="height"
+      [type]="type"
+      [dataFormat]="dataFormat"
+      [dataSource]="dataSource"
+  ></fusioncharts>
+           <!-- <md-progress-spinner class="example-margin" [color]="color" [mode]="modeOne" [value]="value"> -->
+          <!--  </md-progress-spinner> -->
          </div>
     </div>
     <div class="readmin-panel">

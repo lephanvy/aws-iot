@@ -4,7 +4,10 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from './components.module';
 
 import { routesPath } from '../routes/path.routes';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
+FusionChartsModule.fcRoot(FusionCharts);
 import 'hammerjs';
 import { HomeComponent } from '../pages/home/home.component';
 import { ReportComponent } from '../pages/report/report.component';
@@ -31,7 +34,8 @@ export const ROUTES: Routes = routesPath;
     ComponentsModule,
     RouterModule.forRoot(ROUTES),
     CommonModule,
-    FormsModule
+    FormsModule,
+    FusionChartsModule
   ],
   exports: [
     RouterModule,
@@ -48,7 +52,8 @@ export const ROUTES: Routes = routesPath;
     ConfirmMailPageComponent,
     ErrorPageComponent,
     ControlComponent,
-    ButtonsPageComponent
+    ButtonsPageComponent,
+    
   ],
   declarations: [
     HomeComponent,
@@ -64,7 +69,7 @@ export const ROUTES: Routes = routesPath;
     ConfirmMailPageComponent,
     ErrorPageComponent,
     ControlComponent,
-    ButtonsPageComponent
+    ButtonsPageComponent,
   ],
 
 })

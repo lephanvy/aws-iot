@@ -7,7 +7,10 @@ import {RouterModule} from '@angular/router';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AgmCoreModule } from '@agm/core';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
+FusionChartsModule.fcRoot(FusionCharts);
 
 import 'hammerjs';
 import { HeaderComponent } from '../components/header/header.component';
@@ -81,7 +84,8 @@ import { CommonModule } from '@angular/common';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDa287-Veymu6a74ZxmkZkmRKM50zvpqqM'
     }),
-    CommonModule
+    CommonModule,
+    FusionChartsModule
   ],
   exports: [
     HeaderComponent,

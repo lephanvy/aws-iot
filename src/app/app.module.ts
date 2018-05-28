@@ -19,7 +19,10 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { CognitoUtil } from './services/auth.service';
 //import { ReportComponent } from './pages/report/report.component';
 // import { ControlComponent } from './page/control/control.component';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
+FusionChartsModule.fcRoot(FusionCharts);
 
 
 @NgModule({
@@ -27,6 +30,7 @@ import { CognitoUtil } from './services/auth.service';
     AppComponent,
    // ReportComponent,
     // ControlComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +39,8 @@ import { CognitoUtil } from './services/auth.service';
     FormsModule,
     ComponentsModule,
     PagesModule,
-    CommonModule
+    CommonModule,
+    FusionChartsModule
   ],
   providers: [
     MenuToggleService, 
@@ -49,3 +54,4 @@ import { CognitoUtil } from './services/auth.service';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

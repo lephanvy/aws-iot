@@ -23,6 +23,7 @@ export class ControlComponent implements OnInit {
   Kp: number;
   Ki: number;
   Kd: number;
+  test: number;
   temperature;
   client;
   value = 50;
@@ -30,7 +31,32 @@ export class ControlComponent implements OnInit {
   mode = 'indeterminate';
   modeOne = 'determinate';
 
-  constructor() { }
+  id = 'chart1';
+  width = 200;
+  height = 200;
+  type = 'cylinder';
+  dataFormat = 'json';
+  dataSource;
+  title = 'Cylinder Sample';
+
+  constructor() { 
+    this.dataSource = {
+      "chart": {
+        "subcaptionFontBold": "0",
+        "lowerLimit": "0",
+        "upperLimit": "70",
+        "lowerLimitDisplay": "Empty",
+        "upperLimitDisplay": "Full",
+        "numberSuffix": " cm",
+        "showValue": "0",
+        "majorTMNumber": "8",
+        "showhovereffect": "1",
+        "bgCOlor": "#ffffff",
+        "borderAlpha": "0",
+        "cylFillColor": "#008ee4"
+      },
+    }  
+        }
 
   ngOnInit() {
     console.log(this.temperature);
@@ -104,6 +130,7 @@ export class ControlComponent implements OnInit {
   }
   setValue(){
     if(this.Level_SP){
+      this.dataSource.value=this.Level_SP;
       this.client.publish('Level_SP', this.Level_SP);
     }
 
@@ -135,6 +162,8 @@ export class ControlComponent implements OnInit {
   mouseUp_stop(){
     this.Stop=0;
   }
+
+  
   /*
   start(){
       this.client.publish('status', true);

@@ -9,11 +9,15 @@ import { Observable, Subject } from 'rxjs';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
+  
   constructor() {
+   
   }
 
   ngOnInit() {
-        
+    
+    
   }
   
-  }
+  
+}
