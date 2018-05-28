@@ -7,9 +7,22 @@ import * as AWS from 'aws-sdk';
   styleUrls: ['./control.component.scss']
 })
 export class ControlComponent implements OnInit {
-  sp: number;
-  pv;
-  freq;
+  Temper_SP: number;
+  Temper_PV1: number;
+  Temper_PV2: number;
+  Level_SP: number;
+  Level_PV: number;
+  Start: number;
+  Stop: number;
+  Run: number;
+  ActFreq: number;
+  Auto_Man: number;
+  Pump_In: number;
+  Pump_Cir: number;
+  Pump_Out: number;
+  Kp: number;
+  Ki: number;
+  Kd: number;
   temperature;
   client;
   value = 50;
@@ -90,25 +103,47 @@ export class ControlComponent implements OnInit {
     // });
   }
   setValue(){
-    if(this.sp){
-      this.client.publish('temperature', this.sp);
+    if(this.Level_SP){
+      this.client.publish('Level_SP', this.Level_SP);
     }
 
-    if(this.pv){
-      this.client.publish('temperature', this.sp);
+    if(this.Temper_SP){
+      this.client.publish('Temper_SP', this.Temper_SP);
     }
 
-    if(this.freq){
-      this.client.publish('temperature', this.sp);
+    if(this.Kp){
+      this.client.publish('Kp', this.Kp);
+    }
+    if(this.Ki){
+      this.client.publish('Ki', this.Ki);
+    }
+    if(this.Kd){
+      this.client.publish('Kd', this.Kd);
     }
     
   }
 
+  mouseDown_start(){
+    this.Start=1;
+  }
+  mouseUp_start(){
+    this.Start=0;
+  }
+  mouseDown_stop(){
+    this.Stop=1;
+  }
+  mouseUp_stop(){
+    this.Stop=0;
+  }
+  /*
   start(){
       this.client.publish('status', true);
   }
-
+*/
+/*
   stop(){
     this.client.publish('status', false);
+    //this.start_state=1;
   }
+*/
 }

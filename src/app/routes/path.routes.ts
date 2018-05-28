@@ -12,11 +12,12 @@ import { ErrorPageComponent } from '../pages/error-page/error-page.component';
 import { ControlComponent } from '../pages/control/control.component';
 import { ButtonsComponent } from '../components/ui-elements/buttons/buttons.component';
 import { ButtonsPageComponent } from '../pages/buttons-page/buttons-page.component';
-
+import { ReportComponent } from '../pages/report/report.component';
 export const routesPath = [
   { path: '', component: HomeComponent },
   { path: 'controls', component: ControlComponent},
   { path: 'trend', component: ChartLinePageComponent},
   { path: 'login', component: LoginPageComponent},
-  {path: 'button', component: ButtonsPageComponent}
+  {path: 'button', component: ButtonsPageComponent},
+  {path: 'report', component: ReportComponent}
 ];

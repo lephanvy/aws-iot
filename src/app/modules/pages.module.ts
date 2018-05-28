@@ -7,7 +7,7 @@ import { routesPath } from '../routes/path.routes';
 
 import 'hammerjs';
 import { HomeComponent } from '../pages/home/home.component';
-
+import { ReportComponent } from '../pages/report/report.component';
 import { ProgressPageComponent } from '../pages/progress-page/progress-page.component';
 import { ChartBarPageComponent } from '../pages/chart-bar-page/chart-bar-page.component';
 import { ChartLinePageComponent } from '../pages/chart-line-page/chart-line-page.component';
@@ -36,6 +36,7 @@ export const ROUTES: Routes = routesPath;
   exports: [
     RouterModule,
     HomeComponent,
+    ReportComponent,
     ProgressPageComponent,
     ChartBarPageComponent,
     ChartLinePageComponent,
@@ -51,6 +52,7 @@ export const ROUTES: Routes = routesPath;
   ],
   declarations: [
     HomeComponent,
+    ReportComponent,
     ProgressPageComponent,
     ChartBarPageComponent,
     ChartLinePageComponent,

@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { UserLoginService } from './services/login.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CognitoUtil } from './services/auth.service';
+//import { ReportComponent } from './pages/report/report.component';
 // import { ControlComponent } from './page/control/control.component';
 
 
@@ -24,6 +25,7 @@ import { CognitoUtil } from './services/auth.service';
 @NgModule({
   declarations: [
     AppComponent,
+   // ReportComponent,
     // ControlComponent,
   ],
   imports: [
