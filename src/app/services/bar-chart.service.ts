@@ -147,6 +147,6 @@ export class BarChartService {
           "name": "J"
         }
       ]
-    }
+    },
   ];
 }

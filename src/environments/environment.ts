@@ -6,10 +6,10 @@
 export const environment = {
   production: false,
   region: 'ap-southeast-1',
-  identityPoolId:'ap-southeast-1:d5edac6d-1272-4f6d-8173-11a3833c96ae',
+  identityPoolId:'ap-southeast-1:04a55e61-27f8-4840-873a-1c277568e0c8',
   cognito_idp_endpoint: '',
-  userPoolId:'ap-southeast-1_BsHFmXTu5',
-  clientId:'2gu3gg05ngjmnddh7uc8csg06b',
+  userPoolId:'ap-southeast-1_lTPl7Pzkd',
+  clientId:'3thuu0vj0tnv0kkouptfkjkgsg',
   cognito_identity_endpoint:'',
   sts_endpoint:''
 };

@@ -32,11 +32,11 @@ export class LoginComponent implements CognitoCallback , LoggedInCallback ,OnIni
             //this.router.navigate(['/home/confirmRegistration', this.email]);
         } else if (this.errorMessage === 'User needs to set password.') {
             console.log("redirecting to set new password");
-           // this.router.navigate(['/home/newPassword']);
+            this.router.navigate(['/new-password']);
         }
     } else { //success
         // this.ddb.writeLogEntry("login");
-        this.router.navigate(['/securehome']);
+        this.router.navigate(['/']);
     }
 
     
@@ -44,7 +44,7 @@ export class LoginComponent implements CognitoCallback , LoggedInCallback ,OnIni
 
 isLoggedIn(message: string, isLoggedIn: boolean) {
   if (isLoggedIn) {
-      this.router.navigate(['/home']);
+      this.router.navigate(['/']);
   }
 }
 onLogin() {

@@ -72,6 +72,7 @@ import { PieChartComponent } from '../charts/pie-chart/pie-chart.component';
 import { PieGridChartComponent } from '../charts/pie-grid-chart/pie-grid-chart.component';
 import { GaugeChartComponent } from '../charts/gauge-chart/gauge-chart.component';
 import { CommonModule } from '@angular/common';
+import { NewPassordComponent } from '../components/other-pages/new-passord/new-passord.component';
 
 @NgModule({
   imports: [
@@ -145,7 +146,8 @@ import { CommonModule } from '@angular/common';
     LineChartComponent,
     PieChartComponent,
     PieGridChartComponent,
-    GaugeChartComponent
+    GaugeChartComponent,
+    NewPassordComponent
   ],
   declarations: [
     HeaderComponent,
@@ -205,7 +207,9 @@ import { CommonModule } from '@angular/common';
               LineChartComponent,
                PieChartComponent, 
                PieGridChartComponent,
-                GaugeChartComponent],
+                GaugeChartComponent,
+                NewPassordComponent
+              ],
   entryComponents: [ SimpleDialog, DialogWithFooter, DialogWithContextualHeading]
 
 })

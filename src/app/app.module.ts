@@ -17,6 +17,9 @@ import { FormsModule } from '@angular/forms';
 import { UserLoginService } from './services/login.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { CognitoUtil } from './services/auth.service';
+import { UserRegistrationService } from './services/user-registration.service';
+import { TrendService } from './services/trend.service';
+import { HttpModule } from '@angular/http';
 //import { ReportComponent } from './pages/report/report.component';
 // import { ControlComponent } from './page/control/control.component';
 import * as FusionCharts from 'fusioncharts';
@@ -40,6 +43,7 @@ FusionChartsModule.fcRoot(FusionCharts);
     ComponentsModule,
     PagesModule,
     CommonModule,
+    HttpModule,
     FusionChartsModule
   ],
   providers: [
@@ -49,7 +53,8 @@ FusionChartsModule.fcRoot(FusionCharts);
     UserLoginService,
     AuthGuardService,
     CognitoUtil,
-      
+      UserRegistrationService,
+      TrendService
   ],
   bootstrap: [AppComponent]
 })
