@@ -2,7 +2,7 @@
   position: relative;
   width: 100%;
   background: $color-bg-white;
-  margin-bottom: $margin-large;
+  margin-bottom: $margin-small;
   @include border-radius($border-radius);
   @include an-box-shadow-small;
 
@@ -26,8 +26,7 @@
     padding: $padding-base + 2 $padding-medium;
     padding-right: $padding-base;
     @include flex-space-between;
-
-    &.primary {
+      &.primary {
       background: #3f51b5;
       h5 {
         color: $font-color-white;
@@ -39,7 +38,7 @@
     }
   }
   .panel-body {
-    padding: $padding-medium;
+    padding: $padding-small $padding-medium;
     width: 100%;
     display: inline-block;
     overflow-x: auto;

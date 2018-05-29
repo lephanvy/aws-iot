@@ -30,17 +30,23 @@ export class ControlComponent implements OnInit {
   color = 'primary';
   mode = 'indeterminate';
   modeOne = 'determinate';
-
-  id = 'chart1';
-  width = 200;
-  height = 200;
-  type = 'cylinder';
+// Tank indicator
+  id_tank = 'chart1';
+  width_tank = 200;
+  height_tank = 280;
+  type_tank = 'cylinder';
   dataFormat = 'json';
-  dataSource;
-  title = 'Cylinder Sample';
+  dataSource_tank;
+
+  //Thermometer
+  type_thermo = 'thermometer';
+  width_thermo =150;
+  height_thermo = 195;
+  dataSource_thermo;
+ 
 
   constructor() { 
-    this.dataSource = {
+    this.dataSource_tank = {
       "chart": {
         "subcaptionFontBold": "0",
         "lowerLimit": "0",
@@ -54,9 +60,31 @@ export class ControlComponent implements OnInit {
         "bgCOlor": "#ffffff",
         "borderAlpha": "0",
         "cylFillColor": "#008ee4"
-      },
-    }  
-        }
+      }
+    };
+    this.dataSource_thermo = {
+      "chart": {
+        "showBorder": "0",
+        "lowerLimit": "20",
+        "upperLimit": "70",
+        "decimals": "1",
+        "numberSuffix": "°C",
+        "showhovereffect": "1",
+        "thmFillColor": "#ff0000",
+        "showGaugeBorder": "1",
+        "gaugeBorderColor": "#383535",
+        "gaugeBorderThickness": "2",
+        "gaugeBorderAlpha": "30",
+        "thmOriginX": "100",
+        "chartBottomMargin": "20",
+        "valueFontColor": "#000000",
+        "theme": "fint",
+        "bgColor": "FFFFFF",
+
+    },
+    "value": "30",
+    
+        }}
 
   ngOnInit() {
     console.log(this.temperature);
@@ -130,7 +158,7 @@ export class ControlComponent implements OnInit {
   }
   setValue(){
     if(this.Level_SP){
-      this.dataSource.value=this.Level_SP;
+      this.dataSource_tank.value=this.Level_SP;
       this.client.publish('Level_SP', this.Level_SP);
     }
 

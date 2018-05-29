@@ -3,158 +3,211 @@
   <div class="col-md-3">
     <div class="readmin-panel">
                <div class="panel-body">
-            <fusioncharts
-      [id]="id"
-      [width]="width"
-      [height]="height"
-      [type]="type"
+    <fusioncharts 
+    style="display: block;
+    margin-left: auto;
+    margin-right: auto"
+      [id]="id_tank"
+      [width]="width_tank"
+      [height]="height_tank"
+      [type]="type_tank"
       [dataFormat]="dataFormat"
-      [dataSource]="dataSource"
+      [dataSource]="dataSource_tank"
   ></fusioncharts>
+<!--  <fusioncharts
+   [width]="width_run"
+  [height]="height_run"
+  [type]="type_run"
+  [dataFormat]="dataFormat"
+  [dataSource]="dataSource_run"
+></fusioncharts>-->
            <!-- <md-progress-spinner class="example-margin" [color]="color" [mode]="modeOne" [value]="value"> -->
           <!--  </md-progress-spinner> -->
          </div>
     </div>
     <div class="readmin-panel">
-        <div class="panel-heading">
-            <h5>MODE</h5>
-          </div>
-             <div class="panel-body">
-                <p>## AUTO/ MANUAL </p>
-             </div> 
-      <div class="panel-heading">
-          <h5>Status</h5>
+       
+          
+        <div class="panel-body">
+          <table class="table table-hover">
+              <thead style="background-color: rgb(195, 211, 245)" align="center">
+                  <th  colspan="2" style="text-align: center; border-radius: 4px"> <h5>Level</h5></th></thead> 
+                  <tbody>
+                  <tr>
+                    <td>SP</td>
+                    <td>
+                      <!--  <md-input-container> -->
+                            <input  size="8" style="border:none" [(ngModel)]="Level_SP" mdInput placeholder="Type value" value="">
+                         <!-- </md-input-container>--> 
+                    </td>
+                  </tr>
+                            
+                  <tr>
+                    <td>PV</td>
+                    <td>## Level_PV</td>
+                  </tr>
+                                </tbody>
+                  </table>
+     
         </div>
-           <div class="panel-body">
-              <md-icon class="color-ON">fiber_manual_record</md-icon>
-           </div>
-            <div class="panel-heading">
-            <h5>Process</h5>
-          </div>
-             <div class="panel-body">
-                <p>## Pump In/ Pump Cir/ Pump Out </p>
-             </div>
-        </div>
+      </div>
+    
   </div>
  <!-- Colum 2-->
-  <div class="col-md-5">
-    <div class="readmin-panel">
-      <div class="panel-heading">
-        <div class="text-center">
-            <h5>Level (cm)</h5>
-        </div>
-      </div>
-      <div class="panel-body">
-        <table class="table table-condensed">
-              <thead>
-                <tr>
-                  <td>SP</td>
-                  <td>
-                      <md-input-container>
-                          <input [(ngModel)]="Level_SP" mdInput placeholder="" value="">
-                        </md-input-container>
-                  </td>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>PV</td>
-                  <td>## Level_PV</td>
-                </tr>
-                              </tbody>
-                </table>
-   
-      </div>
-    </div>
-    <div class="readmin-panel">
-      <div class="panel-heading">
-          <div class="text-center">
-              <h5>Pump (Hz)</h5>
+  <div class="col-md-6">
+      <div class="row">
+          <div class="col-md-6">
+              <div class="readmin-panel">
+      
+                  <div class="panel-heading">
+                      <h5 style="margin-top:0; margin-right:auto;margin-bottom:0; margin-left:auto">
+                         <b>AUTO</b> 
+                           </h5>
+                    </div>
+                       <div class="panel-body">
+                       
+                          <div class="dot" ></div> 
+                                
+                       </div>
+                       
+                    </div>
+            </div>
+          <div class="col-md-6">
+              <div class="readmin-panel">
+              <fusioncharts 
+              style="display: block;
+              margin-left: auto;
+              margin-right: auto"
+                [width]="width_thermo"
+                [height]="height_thermo"
+                [type]="type_thermo"
+                [dataFormat]="dataFormat"
+                [dataSource]="dataSource_thermo"
+            ></fusioncharts>
           </div>
-      </div>
-      <div class="panel-body">
-          <table class="table table-condensed">
-               <tbody>
-                <tr>
-                  <td>ActFreq</td>
-                  <td>## ActFreq</td>
-                </tr>
-                              </tbody>
-                </table>
-      </div>
+            </div>
+           
+        </div>
+    
+    <div class="readmin-panel">
+     
+          <div class="panel-heading">
+              <h5 style="margin-top:0; margin-right:auto;margin-bottom:0; margin-left:auto">
+                Process: Pump In</h5>
+            </div>
+               <div class="panel-body">
+                  <md-progress-bar color="warn" mode="buffer" value="33.5" bufferValue="67.5" ></md-progress-bar>
+               </div>
     </div>
     <div class="readmin-panel">
 
       <div class="panel-body">
-        <button md-raised-button color="primary" class="text-uppercase full-width" (click)="setValue()">Set value</button>
+        <button md-raised-button color="primary" class="text-uppercase full-width with-icon" style="margin-top:20px" (click)="setValue()"> <md-icon>save_alt</md-icon> Set value</button>
        <span>
         <button md-raised-button color="primary" class="with-icon" style="width: 47%; float: left" (mousedown)="mouseDown_start()" (mouseup)="mouseUp_start()">
           <md-icon>play_arrow</md-icon> Start</button>
         <button md-raised-button color="warn" class="with-icon" style="width: 47%; float: right" (mousedown)="mouseDown_stop()" (mouseup)="mouseUp_stop()">
           <md-icon>stop</md-icon>Stop</button>
         </span>
+        <span>
+            <button md-raised-button color="primary" class="with-icon" style="width: 47%; float: left" (mousedown)="mouseDown_start()" (mouseup)="mouseUp_start()">
+              <md-icon>refresh</md-icon> Reset</button>
+            <button md-raised-button color="warn" class="with-icon" style="width: 47%; float: right" (mousedown)="mouseDown_stop()" (mouseup)="mouseUp_stop()">
+              <md-icon>error</md-icon> Emergency</button>
+            </span>
       </div>
     </div>
 
   </div>
 
  <!-- Colum 3-->
-  <div class="col-md-4">
+  <div class="col-md-3">
       <div class="readmin-panel">
-          <div class="panel-heading">
-               <h5>Temperature (&#8451;)</h5>
-          </div>
+         <!--  <div class="panel-heading">
+               <h5 style="margin-top:0; margin-right:auto;margin-bottom:0; margin-left:auto">
+                 Temperature</h5>
+          </div>-->
+         
           <div class="panel-body">
-            <table class="table table-condensed">
-               <tbody>
+              <table font-size="40px" class="table table-hover">
+                  <thead style="background-color: rgb(195, 211, 245)" align="center">
+                      <th  colspan="2" style="text-align: center;border-radius: 4px"> <h5>Temperature</h5></th></thead> 
+                    
+                  <tbody>
                 <tr>
-                  <td>SP</td>
+                  <td >SP</td>
                   <td>
-                      <md-input-container>
-                          <input [(ngModel)]="Temper_SP" mdInput placeholder="" value="">
-                        </md-input-container>
+                     <!--  <md-input-container> -->
+                          <input size="8" style="border:none" [(ngModel)]="Temper_SP" mdInput placeholder="Type value" value="">
+                          <!-- </md-input-container>-->
                   </td>
+                  
                 </tr>
                 <tr>
-                  <td>PV1</td>
-                  <td>## Temper_PV1</td>
+                  <td >PV1</td>
+                  <td >## Temper_PV1</td>
+                
                 </tr>
                 <tr>
                   
-                  <td>PV2</td>
-                  <td>## Temper_PV2</td>
+                  <td >PV2</td>
+                  <td >## Temper_PV2</td>
+                
                 </tr>
                 <tr>
                   
-                    <td>Kp</td>
+                    <td >Kp</td>
                     <td>
-                        <md-input-container>
-                            <input [(ngModel)]="Kp" mdInput placeholder="" value="">
-                          </md-input-container>
+                          <!--  <md-input-container> -->
+                            <input size="8" style="border:none" [(ngModel)]="Kp" mdInput placeholder="Type value" value="">
+                           <!--  </md-input-container> -->
                     </td>
+                    
                   </tr>
                   <tr>
                   
-                      <td>Ki</td>
+                      <td >Ki</td>
                       <td>
-                          <md-input-container>
-                              <input [(ngModel)]="Ki" mdInput placeholder="" value="">
-                            </md-input-container>
+                            <!--  <md-input-container> -->
+                              <input size="8" style="border:none" [(ngModel)]="Ki" mdInput placeholder="Type value" value="">
+                              <!--  </md-input-container> -->
                       </td>
+                     
                     </tr>
                     <tr>
                   
-                        <td>Kd</td>
+                        <td >Kd</td>
                         <td>
-                            <md-input-container>
-                                <input [(ngModel)]="Kd" mdInput placeholder="" value="">
-                              </md-input-container>
+                           <!--  <md-input-container> -->
+                                <input size="8" style="border:none" [(ngModel)]="Kd" mdInput placeholder="Type value" value="">
+                              <!--  </md-input-container> -->
                         </td>
+                       
                       </tr>
               </tbody>
             </table>
         
+            <table class="table table-hover">
+                <thead style="background-color: rgb(195, 211, 245)" align="center">
+                    <th  colspan="2" style="text-align: center;border-radius: 4px"> <h5 sytle="color:white">Pump</h5></th></thead> 
+                  
+                    <tbody>
+                     <tr>
+                       <td>Freq</td>
+                       <td>## ActFreq</td>
+                     </tr>
+                                   </tbody>
+                     </table>
           </div>
-        </div>
+     <!--     <div class="panel-heading">
+         
+              <h5 style="margin-top:0; margin-right:auto;margin-bottom:0; margin-left:auto">
+                Pump</h5>
+         
+      </div>-->
+    <!--     <div class="panel-body">
+           
+    </div>
+        </div>-->
   </div>
 </div>
