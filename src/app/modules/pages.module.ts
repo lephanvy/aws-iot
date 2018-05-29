@@ -4,10 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { ComponentsModule } from './components.module';
 
 import { routesPath } from '../routes/path.routes';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
+FusionChartsModule.fcRoot(FusionCharts);
 import 'hammerjs';
 import { HomeComponent } from '../pages/home/home.component';
-
+import { ReportComponent } from '../pages/report/report.component';
 import { ProgressPageComponent } from '../pages/progress-page/progress-page.component';
 import { ChartBarPageComponent } from '../pages/chart-bar-page/chart-bar-page.component';
 import { ChartLinePageComponent } from '../pages/chart-line-page/chart-line-page.component';
@@ -31,11 +34,13 @@ export const ROUTES: Routes = routesPath;
     ComponentsModule,
     RouterModule.forRoot(ROUTES),
     CommonModule,
-    FormsModule
+    FormsModule,
+    FusionChartsModule
   ],
   exports: [
     RouterModule,
     HomeComponent,
+    ReportComponent,
     ProgressPageComponent,
     ChartBarPageComponent,
     ChartLinePageComponent,
@@ -47,10 +52,12 @@ export const ROUTES: Routes = routesPath;
     ConfirmMailPageComponent,
     ErrorPageComponent,
     ControlComponent,
-    ButtonsPageComponent
+    ButtonsPageComponent,
+    
   ],
   declarations: [
     HomeComponent,
+    ReportComponent,
     ProgressPageComponent,
     ChartBarPageComponent,
     ChartLinePageComponent,
@@ -62,7 +69,7 @@ export const ROUTES: Routes = routesPath;
     ConfirmMailPageComponent,
     ErrorPageComponent,
     ControlComponent,
-    ButtonsPageComponent
+    ButtonsPageComponent,
   ],
 
 })

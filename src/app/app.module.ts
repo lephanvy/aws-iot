@@ -20,14 +20,20 @@ import { CognitoUtil } from './services/auth.service';
 import { UserRegistrationService } from './services/user-registration.service';
 import { TrendService } from './services/trend.service';
 import { HttpModule } from '@angular/http';
+//import { ReportComponent } from './pages/report/report.component';
 // import { ControlComponent } from './page/control/control.component';
+import * as FusionCharts from 'fusioncharts';
+import { FusionChartsModule } from 'angular4-fusioncharts';
 
+FusionChartsModule.fcRoot(FusionCharts);
 
 
 @NgModule({
   declarations: [
     AppComponent,
+   // ReportComponent,
     // ControlComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -37,7 +43,8 @@ import { HttpModule } from '@angular/http';
     ComponentsModule,
     PagesModule,
     CommonModule,
-    HttpModule
+    HttpModule,
+    FusionChartsModule
   ],
   providers: [
     MenuToggleService, 
@@ -52,3 +59,4 @@ import { HttpModule } from '@angular/http';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+

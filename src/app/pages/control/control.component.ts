@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import AwsIotService from '../../services/aws-iot.service';
 import * as AWS from 'aws-sdk';
-import {CognitoUtil, CognitoCallback, LoggedInCallback} from '../../services/auth.service';
+import { CognitoUtil, CognitoCallback, LoggedInCallback } from '../../services/auth.service';
 import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
 import { UserLoginService } from '../../services/login.service';
@@ -12,31 +12,73 @@ import { UserLoginService } from '../../services/login.service';
 })
 
 export class ControlComponent implements OnInit, LoggedInCallback {
-  
+
   sp: number;
   pv;
   freq;
+  Temper_SP: number;
+  Temper_PV1: number;
+  Temper_PV2: number;
+  Level_SP: number;
+  Level_PV: number;
+  Start: number;
+  Stop: number;
+  Run: number;
+  ActFreq: number;
+  Auto_Man: number;
+  Pump_In: number;
+  Pump_Cir: number;
+  Pump_Out: number;
+  Kp: number;
+  Ki: number;
+  Kd: number;
+  test: number;
   temperature;
   client;
   value = 50;
   color = 'primary';
   mode = 'indeterminate';
   modeOne = 'determinate';
-  errorMessage
+  errorMessage;
+  id = 'chart1';
+  width = 200;
+  height = 200;
+  type = 'cylinder';
+  dataFormat = 'json';
+  dataSource;
+  title = 'Cylinder Sample';
+
   constructor(
-    private cognitoUtil : CognitoUtil,
+    private cognitoUtil: CognitoUtil,
     private router: Router,
-    private userService: UserLoginService
+    private userService: UserLoginService,
+
   ) {
     this.userService.isAuthenticated(this);
     console.log(this.cognitoUtil.getCognitoCreds());
-   }
-  onInit(){
-
+    this.dataSource = {
+      "chart": {
+        "subcaptionFontBold": "0",
+        "lowerLimit": "0",
+        "upperLimit": "70",
+        "lowerLimitDisplay": "Empty",
+        "upperLimitDisplay": "Full",
+        "numberSuffix": " cm",
+        "showValue": "0",
+        "majorTMNumber": "8",
+        "showhovereffect": "1",
+        "bgCOlor": "#ffffff",
+        "borderAlpha": "0",
+        "cylFillColor": "#008ee4"
+      },
+    }
   }
 
+
+
+
   ngOnInit() {
-   
+
     // this.mqtt =new AwsIotService(true, option );
     //
     // Attempt to authenticate to the Cognito Identity Pool.  Note that this
@@ -52,10 +94,10 @@ export class ControlComponent implements OnInit, LoggedInCallback {
     // console.log(credentials)
     console.log(AWS.config.credentials);
     if (currentUser != null) {
-      currentUser.getSession(function(err, result) {
+      currentUser.getSession(function (err, result) {
         if (result) {
           console.log('You are now logged in.');
-          let poolArn = 'cognito-idp.'+ AWS.config.region +'.amazonaws.com/' + environment.userPoolId;
+          let poolArn = 'cognito-idp.' + AWS.config.region + '.amazonaws.com/' + environment.userPoolId;
           // Add the User's Id Token to the Cognito credentials login map.
           AWS.config.credentials = new AWS.CognitoIdentityCredentials({
             IdentityPoolId: environment.identityPoolId,
@@ -63,12 +105,12 @@ export class ControlComponent implements OnInit, LoggedInCallback {
               [poolArn]: result.getIdToken().getJwtToken()
             }
           });
-          AWS.config.update({region: AWS.config.region});
+          AWS.config.update({ region: AWS.config.region });
           AWS.config.getCredentials((error) => {
             if (error) {
               console.log(error);
             }
-      
+
             const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
             credentialSubset = { accessKeyId, secretAccessKey, sessionToken };
             console.log(credentialSubset)
@@ -77,9 +119,9 @@ export class ControlComponent implements OnInit, LoggedInCallback {
       });
     }
     console.log(this.temperature);
-    
-    
-    
+
+
+
     var clientId = `mqtt-explorer-${Math.floor((Math.random() * 1000000) + 1)}`;
     var option = {
       region: AWS.config.region,
@@ -92,59 +134,83 @@ export class ControlComponent implements OnInit, LoggedInCallback {
       secretKey: credentialSubset.secretAccessKey,
       sessionToken: credentialSubset.sessionToken
     }
-    this.client = new AwsIotService(true, option );
+    this.client = new AwsIotService(true, option);
 
-      this.client.onMessage().subscribe(message => {
-        console.log(message);
-        console.log((message.payload.toString()))
-       this.temperature = message
-      });
-      console.log(this.temperature)
-      this.client.onEvent('connect').subscribe(() => {
-        console.log('connect');
-        this.client.subscribe('Auto_Man');
-        this.client.publish('topic_1', JSON.stringify({ test_data: 1 }))
-      });
+    this.client.onMessage().subscribe(message => {
+      console.log(message);
+      console.log((message.payload.toString()))
+      this.temperature = message
+    });
+    console.log(this.temperature)
+    this.client.onEvent('connect').subscribe(() => {
+      console.log('connect');
+      this.client.subscribe('Auto_Man');
+      this.client.publish('topic_1', JSON.stringify({ test_data: 1 }))
+    });
     // this.mttq.on('reconnect', function () {
     //   console.log('reconnect')
     // });
   }
-  setValue(){
-    if(this.sp){
-      this.client.publish('temperature', this.sp);
+  setValue() {
+    if (this.Level_SP) {
+      this.dataSource.value = this.Level_SP;
+      this.client.publish('Level_SP', this.Level_SP);
     }
 
-    if(this.pv){
-      this.client.publish('temperature', this.sp);
+    if (this.Temper_SP) {
+      this.client.publish('Temper_SP', this.Temper_SP);
     }
 
-    if(this.freq){
-      this.client.publish('temperature', this.sp);
+    if (this.Kp) {
+      this.client.publish('Kp', this.Kp);
     }
-    
+    if (this.Ki) {
+      this.client.publish('Ki', this.Ki);
+    }
+    if (this.Kd) {
+      this.client.publish('Kd', this.Kd);
+    }
+
   }
 
-  start(){
-      this.client.publish('status', true);
+  mouseDown_start() {
+    this.Start = 1;
+  }
+  mouseUp_start() {
+    this.Start = 0;
+  }
+  mouseDown_stop() {
+    this.Stop = 1;
+  }
+  mouseUp_stop() {
+    this.Stop = 0;
   }
 
-  stop(){
+
+
+  start() {
+    this.client.publish('status', true);
+  }
+
+  stop() {
     this.client.publish('status', false);
+    //this.start_state=1;
   }
 
   cognitoCallback(message: string, result: any) {
     if (message != null) { //error
-        this.errorMessage = message;
-        console.log("result: " + this.errorMessage);
+      this.errorMessage = message;
+      console.log("result: " + this.errorMessage);
     } else { //success
-        //move to the next step
-        console.log("redirecting");
-        this.router.navigate(['/']);
+      //move to the next step
+      console.log("redirecting");
+      this.router.navigate(['/']);
     }
-}
+  }
 
-isLoggedIn(message: string, isLoggedIn: boolean) {
+  isLoggedIn(message: string, isLoggedIn: boolean) {
     if (!isLoggedIn)
-        this.router.navigate(['/login']);
-}
+      this.router.navigate(['/login']);
+  }
+
 }

@@ -1,15 +1,19 @@
+// import module mà Component của mình sử dụng
 import { Component, OnInit } from '@angular/core';
 import { MenuToggleService } from './services/menu-toggle.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  
 })
 export class AppComponent implements OnInit {
   temperature = '';
   data = {};
   mqttClient;
+  
+  
   constructor(public isToggle : MenuToggleService) {
     
   }
