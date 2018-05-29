@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TrendService } from '../../services/trend.service';
 
 @Component({
   selector: 'app-chart-line-page',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartLinePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private trendService : TrendService
+  ) { }
 
   ngOnInit() {
   }

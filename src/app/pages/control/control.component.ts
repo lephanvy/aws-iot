@@ -10,7 +10,9 @@ import { UserLoginService } from '../../services/login.service';
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss']
 })
+
 export class ControlComponent implements OnInit, LoggedInCallback {
+  
   sp: number;
   pv;
   freq;
@@ -29,6 +31,9 @@ export class ControlComponent implements OnInit, LoggedInCallback {
     this.userService.isAuthenticated(this);
     console.log(this.cognitoUtil.getCognitoCreds());
    }
+  onInit(){
+
+  }
 
   ngOnInit() {
    

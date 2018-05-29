@@ -148,50 +148,5 @@ export class BarChartService {
         }
       ]
     },
-    {
-      "name": "AA",
-      "series": [
-        {
-          "value": 3000,
-          "name": "A"
-        },
-        {
-          "value": 2649,
-          "name": "B"
-        },
-        {
-          "value": 2522,
-          "name": "C"
-        },
-        {
-          "value": 3235,
-          "name": "D"
-        },
-        {
-          "value": 3564,
-          "name": "E"
-        },
-        {
-          "value": 3000,
-          "name": "F"
-        },
-        {
-          "value": 2649,
-          "name": "G"
-        },
-        {
-          "value": 2522,
-          "name": "H"
-        },
-        {
-          "value": 3235,
-          "name": "I"
-        },
-        {
-          "value": 3564,
-          "name": "J"
-        }
-      ]
-    }
   ];
 }
