@@ -4,6 +4,7 @@ import { CognitoCallback, CognitoUtil, LoggedInCallback } from "./auth.service";
 import { AuthenticationDetails, CognitoUser, CognitoUserSession } from "amazon-cognito-identity-js";
 import * as AWS from "aws-sdk/global";
 import * as STS from "aws-sdk/clients/sts";
+import * as awsiot from "aws-sdk";
 
 @Injectable()
 export class UserLoginService {
@@ -11,7 +12,7 @@ export class UserLoginService {
     private onLoginSuccess = (callback: CognitoCallback, session: CognitoUserSession) => {
 
         console.log("In authenticateUser onSuccess callback");
-
+        console.log(new awsiot.Iot())
         AWS.config.credentials = this.cognitoUtil.buildCognitoCreds(session.getIdToken().getJwtToken());
 
         // So, when CognitoIdentity authenticates a user, it doesn't actually hand us the IdentityID,

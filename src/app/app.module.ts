@@ -24,6 +24,7 @@ import { HttpModule } from '@angular/http';
 // import { ControlComponent } from './page/control/control.component';
 import * as FusionCharts from 'fusioncharts';
 import { FusionChartsModule } from 'angular4-fusioncharts';
+// import { FusionChartComponent } from './components/fusion-chart/fusion-chart.component';
 
 FusionChartsModule.fcRoot(FusionCharts);
 
@@ -31,6 +32,7 @@ FusionChartsModule.fcRoot(FusionCharts);
 @NgModule({
   declarations: [
     AppComponent,
+    // FusionChartComponent,
    // ReportComponent,
     // ControlComponent,
     

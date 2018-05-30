@@ -1,17 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import AwsIotService from '../../services/aws-iot.service';
 import * as AWS from 'aws-sdk';
 import { CognitoUtil, CognitoCallback, LoggedInCallback } from '../../services/auth.service';
 import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
 import { UserLoginService } from '../../services/login.service';
+
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
   styleUrls: ['./control.component.scss']
 })
 
-export class ControlComponent implements OnInit/*, LoggedInCallback */{
+export class ControlComponent implements  OnInit, LoggedInCallback{
 
   sp: number;
   pv;
@@ -39,7 +40,7 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
   color = 'primary';
   mode = 'indeterminate';
   modeOne = 'determinate';
-// Tank indicator
+  // Tank indicator
   id_tank = 'chart1';
   width_tank = 200;
   height_tank = 280;
@@ -49,22 +50,22 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
   // Fusion Chart
   dataFormat = 'json';
   dataSource_tank;
-
+  credentialSubset;
   //Thermometer
   type_thermo = 'thermometer';
-  width_thermo =150;
+  width_thermo = 150;
   height_thermo = 195;
   dataSource_thermo;
- 
+
 
   constructor(
-   /* private cognitoUtil: CognitoUtil,
+    private cognitoUtil: CognitoUtil,
     private router: Router,
-    private userService: UserLoginService,*/
+    private userService: UserLoginService,
 
   ) {
-  /*  this.userService.isAuthenticated(this);
-    console.log(this.cognitoUtil.getCognitoCreds()); */
+   this.credentialSubset = JSON.parse(sessionStorage.getItem('awscrenditals'));
+    // console.log(this.cognitoUtil.getCognitoCreds());
     this.dataSource_tank = {
       "chart": {
         "subcaptionFontBold": "0",
@@ -100,13 +101,15 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
         "theme": "fint",
         "bgColor": "FFFFFF",
 
-    },
-    "value": "30",
-    
-        }}
+      },
+      "value": "30",
+
+    }
+     
+  }
 
   ngOnInit() {
-
+    this.userService.isAuthenticated(this);
     // this.mqtt =new AwsIotService(true, option );
     //
     // Attempt to authenticate to the Cognito Identity Pool.  Note that this
@@ -114,43 +117,44 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
     // identities.
     //
     AWS.config.region = 'ap-southeast-1';
-    let credentialSubset;
+    
+    // console.log(credentialSubset)
     console.log(this.client)
- /*   var currentUser = this.cognitoUtil.getCurrentUser();
-    credentialSubset = this.cognitoUtil.getCognitoCreds();
-    console.log(currentUser)
-    // console.log(credentials)
-    console.log(AWS.config.credentials);
-    if (currentUser != null) {
-      currentUser.getSession(function (err, result) {
-        if (result) {
-          console.log('You are now logged in.');
-          let poolArn = 'cognito-idp.' + AWS.config.region + '.amazonaws.com/' + environment.userPoolId;
-          // Add the User's Id Token to the Cognito credentials login map.
-          AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-            IdentityPoolId: environment.identityPoolId,
-            Logins: {
-              [poolArn]: result.getIdToken().getJwtToken()
-            }
-          });
-          AWS.config.update({ region: AWS.config.region });
-          AWS.config.getCredentials((error) => {
-            if (error) {
-              console.log(error);
-            }
+      var currentUser = this.cognitoUtil.getCurrentUser();
+      //  credentialSubset = this.cognitoUtil.getCognitoCreds();
+       console.log(currentUser)
+       // console.log(credentials)
+       console.log(AWS.config.credentials);
+       if (currentUser != null) {
+         currentUser.getSession(function (err, result) {
+           if (result) {
+             console.log('You are now logged in.');
+             let poolArn = 'cognito-idp.' + AWS.config.region + '.amazonaws.com/' + environment.userPoolId;
+             // Add the User's Id Token to the Cognito credentials login map.
+             AWS.config.credentials = new AWS.CognitoIdentityCredentials({
+               IdentityPoolId: environment.identityPoolId,
+               Logins: {
+                 [poolArn]: result.getIdToken().getJwtToken()
+               }
+             });
+             AWS.config.update({ region: AWS.config.region });
+             AWS.config.getCredentials((error) => {
+               if (error) {
+                 console.log(error);
+               }
+   
+              //  const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
+              //  credentialSubset = { accessKeyId, secretAccessKey, sessionToken };
+              //  console.log(credentialSubset)
+             });
+           }
+         });
+       }
+       console.log(this.temperature); 
 
-            const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
-            credentialSubset = { accessKeyId, secretAccessKey, sessionToken };
-            console.log(credentialSubset)
-          });
-        }
-      });
-    }
-    console.log(this.temperature); */
 
 
-
-    var clientId = `mqtt-explorer-${Math.floor((Math.random() * 1000000) + 1)}`;
+    var clientId = `MyRaspberry-${Math.floor((Math.random() * 1000000) + 1)}`;
     var option = {
       region: AWS.config.region,
       host: 'a1mfymhqf477u9.iot.ap-southeast-1.amazonaws.com',
@@ -158,9 +162,9 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
       protocol: 'wss',
       maximumReconnectTimeMs: 8000,
       debug: true,
-      accessKeyId: credentialSubset.accessKeyId,
-      secretKey: credentialSubset.secretAccessKey,
-      sessionToken: credentialSubset.sessionToken
+      accessKeyId:'AKIAJ3DTSVPKS5KBLSSA',// this.credentialSubset.accessKeyId,
+      secretKey: '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' ,//this.credentialSubset.secretAccessKey,
+      // sessionToken: this.credentialSubset.sessionToken
     }
     this.client = new AwsIotService(true, option);
 
@@ -179,9 +183,9 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
     //   console.log('reconnect')
     // });
   }
-  setValue(){
-    if(this.Level_SP){
-      this.dataSource_tank.value=this.Level_SP;
+  setValue() {
+    if (this.Level_SP) {
+      this.dataSource_tank.value = this.Level_SP;
       this.client.publish('Level_SP', this.Level_SP);
     }
 
@@ -224,7 +228,7 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
     this.client.publish('status', false);
     //this.start_state=1;
   }
-/*
+
   cognitoCallback(message: string, result: any) {
     if (message != null) { //error
       this.errorMessage = message;
@@ -239,6 +243,8 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
   isLoggedIn(message: string, isLoggedIn: boolean) {
     if (!isLoggedIn)
       this.router.navigate(['/login']);
-  }*/
+  }
+  ngOnDestroy() {
 
+  }
 }

@@ -4,7 +4,7 @@ import { CognitoUserPool } from "amazon-cognito-identity-js";
 import * as AWS from "aws-sdk/global";
 import * as awsservice from "aws-sdk/lib/service";
 import * as CognitoIdentity from "aws-sdk/clients/cognitoidentity";
-
+import * as iot from "aws-sdk";
 
 /**
  * Created by Vladimir Budilov
@@ -101,9 +101,19 @@ export class CognitoUtil {
                 alert(error);
                 return;
             }
-        
+            const params = {
+                policyName: 'FullIOT',
+                principal: 'ap-southeast-1:a31c2c14-55b4-45cc-8fb4-e185d7cbd30e'
+              };
+              const _iot = new iot.Iot();
+              _iot.attachPrincipalPolicy(params, function (err, data) {
+                if (err) {
+                  console.log('IOT attach pricipal policy ERR!');
+                }
+              });
+        console.log(creds);
             const { accessKeyId, secretAccessKey, sessionToken } = creds;
-        
+            sessionStorage.setItem('awscrenditals', JSON.stringify({ accessKeyId, secretAccessKey, sessionToken }));
             console.log(creds)
         });
         this.setCognitoCreds(creds);
