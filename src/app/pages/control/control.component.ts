@@ -153,7 +153,8 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
        console.log(this.temperature); 
 
 
-
+       //vẫn dùng public access
+       //ko connect khi login bằng cognito???
     var clientId = `MyRaspberry-${Math.floor((Math.random() * 1000000) + 1)}`;
     var option = {
       region: AWS.config.region,
