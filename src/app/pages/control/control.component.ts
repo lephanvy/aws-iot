@@ -158,9 +158,9 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
       protocol: 'wss',
       maximumReconnectTimeMs: 8000,
       debug: true,
-      accessKeyId: credentialSubset.accessKeyId,
+     /* accessKeyId: credentialSubset.accessKeyId,
       secretKey: credentialSubset.secretAccessKey,
-      sessionToken: credentialSubset.sessionToken
+      sessionToken: credentialSubset.sessionToken*/
     }
     this.client = new AwsIotService(true, option);
 
@@ -203,9 +203,11 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
 
   mouseDown_start() {
     this.Start = 1;
+    console.log(this.Start)
   }
   mouseUp_start() {
     this.Start = 0;
+    console.log(this.Start)
   }
   mouseDown_stop() {
     this.Stop = 1;
@@ -216,14 +218,14 @@ export class ControlComponent implements OnInit/*, LoggedInCallback */{
 
 
 
-  start() {
+  /*start() {
     this.client.publish('status', true);
   }
 
   stop() {
     this.client.publish('status', false);
     //this.start_state=1;
-  }
+  } */
 /*
   cognitoCallback(message: string, result: any) {
     if (message != null) { //error
