@@ -11,7 +11,7 @@ import { UserLoginService } from '../../services/login.service';
   styleUrls: ['./control.component.scss']
 })
 
-export class ControlComponent implements OnInit, LoggedInCallback {
+export class ControlComponent implements OnInit/*, LoggedInCallback */{
 
   sp: number;
   pv;
@@ -58,13 +58,13 @@ export class ControlComponent implements OnInit, LoggedInCallback {
  
 
   constructor(
-    private cognitoUtil: CognitoUtil,
+   /* private cognitoUtil: CognitoUtil,
     private router: Router,
-    private userService: UserLoginService,
+    private userService: UserLoginService,*/
 
   ) {
-    this.userService.isAuthenticated(this);
-    console.log(this.cognitoUtil.getCognitoCreds());
+  /*  this.userService.isAuthenticated(this);
+    console.log(this.cognitoUtil.getCognitoCreds()); */
     this.dataSource_tank = {
       "chart": {
         "subcaptionFontBold": "0",
@@ -116,7 +116,7 @@ export class ControlComponent implements OnInit, LoggedInCallback {
     AWS.config.region = 'ap-southeast-1';
     let credentialSubset;
     console.log(this.client)
-    var currentUser = this.cognitoUtil.getCurrentUser();
+ /*   var currentUser = this.cognitoUtil.getCurrentUser();
     credentialSubset = this.cognitoUtil.getCognitoCreds();
     console.log(currentUser)
     // console.log(credentials)
@@ -146,7 +146,7 @@ export class ControlComponent implements OnInit, LoggedInCallback {
         }
       });
     }
-    console.log(this.temperature);
+    console.log(this.temperature); */
 
 
 
@@ -224,7 +224,7 @@ export class ControlComponent implements OnInit, LoggedInCallback {
     this.client.publish('status', false);
     //this.start_state=1;
   }
-
+/*
   cognitoCallback(message: string, result: any) {
     if (message != null) { //error
       this.errorMessage = message;
@@ -239,6 +239,6 @@ export class ControlComponent implements OnInit, LoggedInCallback {
   isLoggedIn(message: string, isLoggedIn: boolean) {
     if (!isLoggedIn)
       this.router.navigate(['/login']);
-  }
+  }*/
 
 }
