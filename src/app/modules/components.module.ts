@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { MaterialModule } from '@angular/material';
-import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { CdkTableModule } from '@angular/cdk';
-import {RouterModule} from '@angular/router';
+import { RouterModule } from '@angular/router';
 
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AgmCoreModule } from '@agm/core';
 import * as FusionCharts from 'fusioncharts';
@@ -73,6 +73,7 @@ import { PieGridChartComponent } from '../charts/pie-grid-chart/pie-grid-chart.c
 import { GaugeChartComponent } from '../charts/gauge-chart/gauge-chart.component';
 import { CommonModule } from '@angular/common';
 import { NewPassordComponent } from '../components/other-pages/new-passord/new-passord.component';
+import { FusionChartComponent } from '../components/fusion-chart/fusion-chart.component';
 
 @NgModule({
   imports: [
@@ -122,7 +123,7 @@ import { NewPassordComponent } from '../components/other-pages/new-passord/new-p
     SwitchesComponent,
     FormLayoutsComponent,
     AutoCompleteComponent,
-   
+
     LoginComponent,
     RegisterComponent,
     ForgotPasswordComponent,
@@ -147,70 +148,72 @@ import { NewPassordComponent } from '../components/other-pages/new-passord/new-p
     PieChartComponent,
     PieGridChartComponent,
     GaugeChartComponent,
-    NewPassordComponent
+    NewPassordComponent,
+    FusionChartComponent
   ],
   declarations: [
     HeaderComponent,
-    FooterComponent, 
+    FooterComponent,
     SidebarComponent,
-     TinyBarChartComponent, 
-     TinyAreaChartComponent, 
-     TinyLineChartComponent, 
-     IconBoxComponent, 
-     TotalEarnsComponent,
-      AreaChartComponent, 
-      TotalSalesComponent, 
-      BarChartComponent, 
-      UserTableComponent, 
-      IconBoxAlterComponent, 
-       IconMenuComponent, 
-       OrderReviewComponent, 
-       ButtonsComponent, 
-       AppBarsComponent, 
-       SimpleUisComponent, 
-       CardsComponent, 
-       SlidersComponent, 
-       DatePickersComponent, 
-       TimePickersComponent, 
-       DialogsComponent, 
-       TabsComponent, 
-       ProgressComponent, 
-       ListsComponent, 
-       MenusComponent, 
-       GridListComponent, 
-       GridsComponent,
-        BasicFormsComponent, 
-        SwitchesComponent,
-         FormLayoutsComponent, 
-         AutoCompleteComponent, 
-        
-           LoginComponent, 
-           RegisterComponent, 
-           ForgotPasswordComponent, 
-           ConfirmMailComponent, 
-           Error404Component, 
-           LayoutDefaultComponent, 
-           LayoutBannerComponent, 
-           SimpleDialog, 
-           DialogWithFooter, 
-           DialogWithContextualHeading, 
-           BootstrapTablesComponent, 
-           MaterialTablesComponent, 
-           TableWithSortingComponent,
-            TableWithFilteringComponent, 
-            SortHeaderComponent,
-             SnackbarComponent, 
-             MapComponent, 
-             HorizontalBarChartComponent, 
-             StackedBarChartComponent, 
-             HorizontalStackedBarChartComponent,
-              LineChartComponent,
-               PieChartComponent, 
-               PieGridChartComponent,
-                GaugeChartComponent,
-                NewPassordComponent
-              ],
-  entryComponents: [ SimpleDialog, DialogWithFooter, DialogWithContextualHeading]
+    TinyBarChartComponent,
+    TinyAreaChartComponent,
+    TinyLineChartComponent,
+    IconBoxComponent,
+    TotalEarnsComponent,
+    AreaChartComponent,
+    TotalSalesComponent,
+    BarChartComponent,
+    UserTableComponent,
+    IconBoxAlterComponent,
+    IconMenuComponent,
+    OrderReviewComponent,
+    ButtonsComponent,
+    AppBarsComponent,
+    SimpleUisComponent,
+    CardsComponent,
+    SlidersComponent,
+    DatePickersComponent,
+    TimePickersComponent,
+    DialogsComponent,
+    TabsComponent,
+    ProgressComponent,
+    ListsComponent,
+    MenusComponent,
+    GridListComponent,
+    GridsComponent,
+    BasicFormsComponent,
+    SwitchesComponent,
+    FormLayoutsComponent,
+    AutoCompleteComponent,
+
+    LoginComponent,
+    RegisterComponent,
+    ForgotPasswordComponent,
+    ConfirmMailComponent,
+    Error404Component,
+    LayoutDefaultComponent,
+    LayoutBannerComponent,
+    SimpleDialog,
+    DialogWithFooter,
+    DialogWithContextualHeading,
+    BootstrapTablesComponent,
+    MaterialTablesComponent,
+    TableWithSortingComponent,
+    TableWithFilteringComponent,
+    SortHeaderComponent,
+    SnackbarComponent,
+    MapComponent,
+    HorizontalBarChartComponent,
+    StackedBarChartComponent,
+    HorizontalStackedBarChartComponent,
+    LineChartComponent,
+    PieChartComponent,
+    PieGridChartComponent,
+    GaugeChartComponent,
+    NewPassordComponent,
+    FusionChartComponent
+  ],
+  entryComponents: [SimpleDialog, DialogWithFooter, DialogWithContextualHeading]
 
 })
 export class ComponentsModule { }
