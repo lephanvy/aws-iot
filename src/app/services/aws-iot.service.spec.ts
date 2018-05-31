@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AwsIotService } from './aws-iot.service';
+import AwsIotService  from './aws-iot.service';
 
 describe('AwsIotService', () => {
   beforeEach(() => {

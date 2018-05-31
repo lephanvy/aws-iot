@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import DeviceSdk from 'aws-iot-device-sdk';
+import * as DeviceSdk from 'aws-iot-device-sdk';
 import { CONFIG } from './../routes/config';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
@@ -24,7 +24,7 @@ export default class AwsIotService {
   initClient(options) {
     const clientId = `chat-user-${Math.floor((Math.random() * 1000000) + 1)}`;
 
-    this.client = DeviceSdk.device({
+    this.client = new DeviceSdk.device({
       region: options.region || CONFIG.awsRegion,
 
       // AWS IoT Host endpoint
