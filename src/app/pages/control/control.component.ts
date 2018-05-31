@@ -12,7 +12,7 @@ import { UserLoginService } from '../../services/login.service';
   styleUrls: ['./control.component.scss']
 })
 
-export class ControlComponent implements  OnInit, LoggedInCallback{
+export class ControlComponent implements  OnInit, LoggedInCallback, OnDestroy{
 
   sp: number;
   pv;
@@ -163,9 +163,11 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
       protocol: 'wss',
       maximumReconnectTimeMs: 8000,
       debug: true,
-      accessKeyId:'AKIAJ3DTSVPKS5KBLSSA',// this.credentialSubset.accessKeyId,
-      secretKey: '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' ,//this.credentialSubset.secretAccessKey,
-      // sessionToken: this.credentialSubset.sessionToken
+      accessKeyId: this.credentialSubset.accessKeyId,
+      secretKey: this.credentialSubset.secretAccessKey,
+      // accessKeyId:'AKIAJ3DTSVPKS5KBLSSA',// this.credentialSubset.accessKeyId,
+      // secretKey: '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' ,//this.credentialSubset.secretAccessKey,
+      sessionToken: this.credentialSubset.sessionToken
     }
     this.client = new AwsIotService(true, option);
 
@@ -246,6 +248,6 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
       this.router.navigate(['/login']);
   }
   ngOnDestroy() {
-
+      this.client.disconnect()
   }
 }
