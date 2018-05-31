@@ -210,9 +210,11 @@ export class ControlComponent implements  OnInit, LoggedInCallback, OnDestroy{
 
   mouseDown_start() {
     this.Start = 1;
+    console.log(this.Start)
   }
   mouseUp_start() {
     this.Start = 0;
+    console.log(this.Start)
   }
   mouseDown_stop() {
     this.Stop = 1;
@@ -223,7 +225,7 @@ export class ControlComponent implements  OnInit, LoggedInCallback, OnDestroy{
 
 
 
-  start() {
+  /*start() {
     this.client.publish('status', true);
   }
 
@@ -231,7 +233,7 @@ export class ControlComponent implements  OnInit, LoggedInCallback, OnDestroy{
     this.client.publish('status', false);
     //this.start_state=1;
   }
-
+*/
   cognitoCallback(message: string, result: any) {
     if (message != null) { //error
       this.errorMessage = message;
