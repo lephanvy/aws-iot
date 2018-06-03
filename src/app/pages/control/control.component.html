@@ -35,15 +35,15 @@
                   <th  colspan="2" style="text-align: center; border-radius: 4px"> <h5>Level (cm)</h5></th></thead> 
                   <tbody>
                   <tr>
-                    <td>SP</td>
+                    <td><h6>SP</h6></td>
                     <td>
-                       <input  size="8" style="border:none" [(ngModel)]="sendLevel_SP" mdInput placeholder="Type value" value="">
+                       <input   maxlength="5" size="8" style="border:none" [(ngModel)]="sendLevel_SP" mdInput placeholder="Type value" value="">
                     </td>
                   </tr>
                             
                   <tr>
-                    <td>PV</td>
-                    <td>{{Level_PV}}</td>
+                    <td><h6>PV</h6></td>
+                    <td><h6>{{Level_PV}}</h6></td>
                   </tr>
                                 </tbody>
                   </table>
@@ -102,8 +102,13 @@
     <div class="readmin-panel">
 
       <div class="panel-body">
-        <button md-raised-button color="primary" class="text-uppercase full-width with-icon" style="margin-top:20px" (click)="setValue()"> <md-icon>vertical_align_bottom</md-icon> Set value</button>
-       <span>
+  <div style="margin-top: 20px">
+        <span>
+        <button md-raised-button color="primary" style="width: 47%; float: left" class="with-icon"  (click)="setSP()"> <md-icon>vertical_align_bottom</md-icon> Set SP</button>
+        <button md-raised-button color="primary" style="width: 47%; float: right" class="with-icon"  (click)="setPID()"> <md-icon>vertical_align_bottom</md-icon> Set PID</button>
+     </span> 
+    </div>
+        <span>
         <button md-raised-button class="with-icon" style="width: 47%; float: left;background-color:rgb(32, 187, 12)!important; color:white" (mousedown)="mouseDown_start()" (mouseup)="mouseUp_start()">
           <md-icon>play_arrow</md-icon> Start</button>
         <button md-raised-button color="warn" class="with-icon" style="width: 47%; float: right;background-color:rgb(207, 19, 19)!important; color:white" (mousedown)="mouseDown_stop()" (mouseup)="mouseUp_stop()">
@@ -135,51 +140,51 @@
                     
                   <tbody>
                 <tr>
-                  <td >SP</td>
+                  <td ><h6>SP</h6></td>
                   <td>
                      <!--  <md-input-container> -->
-                          <input size="8" style="border:none" [(ngModel)]="sendTemper_SP" mdInput placeholder="Type value" value="">
+                          <input     maxlength="5" size="8" style="border:none" [(ngModel)]="sendTemper_SP" mdInput placeholder="Type value" value="">
                           <!-- </md-input-container>-->
                   </td>
                   
                 </tr>
                 <tr>
-                  <td >PV1</td>
-                  <td >{{Temper_PV1}}</td>
+                  <td ><h6>PV1</h6></td>
+                  <td ><h6>{{Temper_PV1}}</h6></td>
                 
                 </tr>
                 <tr>
                   
-                  <td >PV2</td>
-                  <td >{{Temper_PV2}}</td>
+                  <td ><h6>PV2</h6></td>
+                  <td ><h6>{{Temper_PV2}}</h6></td>
                 
                 </tr>
                 <tr>
                   
-                    <td >Kp</td>
+                    <td ><h6>Kp</h6></td>
                     <td>
                           <!--  <md-input-container> -->
-                            <input size="8" style="border:none" [(ngModel)]="sendKp" mdInput placeholder="Type value" value="">
+                            <input   maxlength="5" size="8" style="border:none" [(ngModel)]="sendKp" mdInput placeholder="Type value" value="">
                            <!--  </md-input-container> -->
                     </td>
                     
                   </tr>
                   <tr>
                   
-                      <td >Ki</td>
+                      <td ><h6>Ki</h6></td>
                       <td>
                             <!--  <md-input-container> -->
-                              <input size="8" style="border:none" [(ngModel)]="sendKi" mdInput placeholder="Type value" value="">
+                              <input    maxlength="5" size="8" style="border:none" [(ngModel)]="sendKi" mdInput placeholder="Type value" value="">
                               <!--  </md-input-container> -->
                       </td>
                      
                     </tr>
                     <tr>
                   
-                        <td >Kd</td>
+                        <td ><h6>Kd</h6></td>
                         <td>
                            <!--  <md-input-container> -->
-                                <input size="8" style="border:none" [(ngModel)]="sendKd" mdInput placeholder="Type value" value="">
+                                <input   maxlength="5" size="8" style="border:none" [(ngModel)]="sendKd" mdInput placeholder="Type value" value="">
                               <!--  </md-input-container> -->
                         </td>
                        
@@ -195,9 +200,9 @@
                 
               <tbody>
             <tr>
-              <td >Freq</td>
+              <td ><h6>Freq</h6></td>
               <td align="left">
-                {{ActFreq}}
+               <h6>{{ActFreq}}</h6> 
               </td>
               <td></td>
               <td></td>
@@ -219,4 +224,5 @@
     </div>
         </div>-->
   </div>
+</div>
 </div>

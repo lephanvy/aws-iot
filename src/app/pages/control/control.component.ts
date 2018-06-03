@@ -6,6 +6,7 @@ import { environment } from 'environments/environment';
 import { Router } from '@angular/router';
 import { UserLoginService } from '../../services/login.service';
 
+
 @Component({
   selector: 'app-control',
   templateUrl: './control.component.html',
@@ -51,7 +52,8 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
   progressbarbuffer: number;
   process_string: string;
 
-  datafromWeb: string;
+  sendSP: string;
+  sendPID: string;
 
   test: number;
   temperature;
@@ -77,6 +79,8 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
   height_thermo = 195;
   dataSource_thermo;
 
+ 
+
 
   constructor(
     private cognitoUtil: CognitoUtil,
@@ -84,6 +88,7 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
     private userService: UserLoginService,
 
   ) {
+    
    this.credentialSubset = JSON.parse(sessionStorage.getItem('awscrenditals'));
     // console.log(this.cognitoUtil.getCognitoCreds());
     this.dataSource_tank = {
@@ -123,6 +128,8 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
 
       },
     }
+ 
+
 // Đèn màu đỏ
     this.offstyle = {height: '110px',
     width : '110px',
@@ -150,6 +157,11 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
      }
 
   ngOnInit() {
+
+
+  
+
+
     this.userService.isAuthenticated(this);
     //this.mqtt =new AwsIotService(true, option );
     //
@@ -218,26 +230,47 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
      console.log((message.payload.toString()));
     
     //Chuyển chuỗi JSON thành các biến riêng lẻ
-    let plcdata = JSON.parse(message.payload.toString());
+   let plcdata = JSON.parse(message.payload.toString());
+   
     this.Run = parseInt(plcdata.Run) 
     this.Auto_Man = parseInt(plcdata.Auto_Man)
     this.Pump_In = parseInt(plcdata.Pump_In)
     this.Pump_Cir = parseInt(plcdata.Pump_Cir)
     this.Pump_Out = parseInt(plcdata.Pump_Out)
-    this.ActFreq = parseInt(plcdata.ActFreq)
-    this.Kp = parseInt(plcdata.Kp)
-    this.Ki = parseInt(plcdata.Ki)
-    this.Kd = parseInt(plcdata.Kd )
-    this.Level_SP = parseInt(plcdata.Level_SP)
-    this.Level_PV = parseInt(plcdata.Level_PV)
-    this.Temper_SP = parseInt(plcdata.Temper_SP)
-    this.Temper_PV1 = parseInt(plcdata.Temper_PV1)
-    this.Temper_PV2 = parseInt(plcdata.Temper_PV2)
+    this.ActFreq = parseFloat(plcdata.ActFreq)
+    this.Kp = parseFloat(plcdata.Kp)
+    this.Ki = parseFloat(plcdata.Ki)
+    this.Kd = parseFloat(plcdata.Kd )
+    this.Level_SP = parseFloat(plcdata.Level_SP)
+    this.Level_PV = parseFloat(plcdata.Level_PV)
+    this.Temper_SP = parseFloat(plcdata.Temper_SP)
+    this.Temper_PV1 = parseFloat(plcdata.Temper_PV1)
+    this.Temper_PV2 = parseFloat(plcdata.Temper_PV2)
     this.No_Batch = parseInt(plcdata.No_Batch)
-
-// Gán giá trị hiển thị bồn và đồng hồ nhiệt độ
     this.dataSource_tank.value = this.Level_PV;
     this.dataSource_thermo.value = this.Temper_PV1;
+   
+// Gán giá trị hiển thị bồn và đồng hồ nhiệt độ
+   
+   // this.dataSource_line.value = this.Level_PV;
+
+  // this.
+
+// line chart
+/*
+function addLeadingZero(num) {
+  return (num <= 9) ? ("0" + num) : num;
+
+}*/
+
+//let currDate = new Date()
+//let label = addLeadingZero(currDate.getHours()) + ":" +
+      //              addLeadingZero(currDate.getMinutes()) + ":" +
+        //            addLeadingZero(currDate.getSeconds())
+
+        //            this.dataSource_line.strData = "&label=" + label + "&value=" + this.Level_PV;
+
+
 
     if (this.Auto_Man ===0) {this.auto_man_string ="MANUAL"
     } else {this.auto_man_string ="AUTO"}
@@ -256,34 +289,52 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
             this.process_string = "Pump Out"
             this.progressbarvalue = 66.67
             this.progressbarbuffer = 100
-               } else
+               } else if ((this.Pump_In ===0) && (this.Pump_Cir ===0) && (this.Pump_Out ===0))
                    {
                     this.process_string = "Waiting..."
                     this.progressbarvalue = 0
                     this.progressbarbuffer = 0
-                    }
+                    } else {
+                      this.process_string = "Error!!!"
+                      this.progressbarvalue = 0
+                      this.progressbarbuffer = 0
+                      }
+
             
           
 
       //this.client.publish('plc', JSON.stringify({"Level_SP": this.Level_SP}))
     });
 
+   
+   
+
     // Sự kiện khi kết nối thành công
     this.client.onEvent('connect').subscribe(() => {
       console.log('connect');
-      this.client.subscribe('plc');
+      
+      this.client.subscribe('Update');
+    
       this.client.publish('connection', JSON.stringify({ test_data: 1 }))
+    //  alert('Connected to AWS IoT');
       
     });
     // this.mttq.on('reconnect', function () {
     //   console.log('reconnect')
     // });
   }
-  setValue() {
-   this.datafromWeb = "datafromWeb" + " " + this.sendLevel_SP + " " + this.sendTemper_SP + " " + this.sendKp + " " + this.sendKi + " " + this.sendKd
-    this.client.publish('datafromWeb',this.datafromWeb)
-    console.log(this.datafromWeb)
+
+  
+  setSP() {
+   this.sendSP =" " + (this.sendLevel_SP*100) + " " + (this.sendTemper_SP*100)
+    this.client.publish('setSPPP',this.sendSP)
+    console.log(this.sendSP)
          }
+  setPID() {
+          this.sendPID =" " + (this.sendKp*100) + " " + (this.sendKi*100) + " " + (this.sendKd*100)
+           this.client.publish('setPIDDD',this.sendPID)
+           console.log(this.sendPID)
+                }  
 /* {"Level_SP": this.sendLevel_SP,  
        "Temper_SP": this.sendTemper_SP,
        "Kp": this.sendKp,
@@ -293,50 +344,50 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
 
   mouseDown_start() {
     this.sendStart = 1;
-    let tempStart: string = "sendStart" + " " + this.sendStart
-    this.client.publish('sendStart',tempStart);
+    //let tempStart: string = " " + this.sendStart
+    this.client.publish('Start_Stop'," 1");
     console.log("Start = 1")
   }
   mouseUp_start() {
     this.sendStart = 0;
-    let tempStart: string = "sendStart" + " " + this.sendStart
-    this.client.publish('sendStart',tempStart);
+   // let tempStart: string = " " + this.sendStart
+   // this.client.publish('Start',tempStart);
     console.log("Start = 0")
   }
   mouseDown_stop() {
     this.sendStop = 1;
-    let tempStop: string = "sendStop" + " " + this.sendStop
-    this.client.publish('sendStop',tempStop);
+   // let tempStop: string = " " + this.sendStop
+    this.client.publish('Start_Stop'," 2");
     console.log("Stop = 1")
   }
   mouseUp_stop() {
     this.sendStop = 0;
-    let tempStop: string = "sendStop" + " " + this.sendStop
-    this.client.publish('sendStop',tempStop);
+   // let tempStop: string = " " + this.sendStop
+   // this.client.publish('Stop',tempStop);
     console.log("Stop = 0")
   }
   mouseDown_reset() {
     this.sendReset = 1;
-    let tempReset: string = "sendReset" + " " + this.sendReset
-    this.client.publish('sendReset',tempReset);
+   // let tempReset: string = " " + this.sendReset
+    this.client.publish('Resett'," ");
     console.log("Reset = 1")
   }
   mouseUp_reset() {
     this.sendReset = 0;
-    let tempReset: string = "sendReset" + " " + this.sendReset
-    this.client.publish('sendReset',tempReset);
+   // let tempReset: string = " " + this.sendReset
+   // this.client.publish('Resett',tempReset);
     console.log("Reset = 0")
   }
   mouseDown_emergency() {
     this.sendEmergency = 1;
-    let tempEmergency: string = "sendEmergency" + " " + this.sendEmergency
-    this.client.publish('sendEmergency',tempEmergency);
+  //  let tempEmergency: string = " " + this.sendEmergency
+    this.client.publish('Emergency'," ");
     console.log("Emergency = 1")
   }
   mouseUp_emergency() {
     this.sendEmergency = 0;
-    let tempEmergency: string = "sendEmergency" + " " + this.sendEmergency
-    this.client.publish('sendEmergency',tempEmergency);
+  //  let tempEmergency: string = " " + this.sendEmergency
+  //  this.client.publish('Emergency',tempEmergency);
     console.log("Emergency = 0")
   }
 
@@ -365,7 +416,6 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
     if (!isLoggedIn)
       this.router.navigate(['/login']);
   }
-  ngOnDestroy() {
-
-  }
+ // ngOnDestroy() {
+ // }
 }

@@ -16,7 +16,7 @@ import { ReportComponent } from '../pages/report/report.component';
 export const routesPath = [
   { path: '', component: HomeComponent },
   { path: 'controls', component: ControlComponent},
-  { path: 'trend', component: ChartAreaPageComponent},
+  { path: 'trend', component: ChartLinePageComponent},
   { path: 'login', component: LoginPageComponent},
     {path: 'button', component: ButtonsPageComponent},
     {path: 'new-password', component: ForgotPassPageComponent},
