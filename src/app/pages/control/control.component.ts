@@ -216,9 +216,11 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
       protocol: 'wss',
       maximumReconnectTimeMs: 8000,
       debug: true,
-      accessKeyId:'AKIAJ3DTSVPKS5KBLSSA',// this.credentialSubset.accessKeyId,
+     /* accessKeyId: this.credentialSubset.accessKeyId,
+      secretKey: this.credentialSubset.secretAccessKey,*/
+       accessKeyId:'AKIAJ3DTSVPKS5KBLSSA',// this.credentialSubset.accessKeyId,
       secretKey: '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' ,//this.credentialSubset.secretAccessKey,
-      // sessionToken: this.credentialSubset.sessionToken
+     // sessionToken: this.credentialSubset.sessionToken
     }
     this.client = new AwsIotService(true, option);
 

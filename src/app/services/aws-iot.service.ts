@@ -49,7 +49,7 @@ export default class AwsIotService {
       // initialized with empty strings
       accessKeyId: options.accessKeyId || '',
       secretKey: options.secretKey || '',
-      // sessionToken: options.sessionToken || '',
+      sessionToken: options.sessionToken || '',
 
       // // Let redux handle subscriptions
       // autoResubscribe: (typeof options.debug === 'undefined') ? false : options.autoResubscribe,
@@ -65,15 +65,15 @@ export default class AwsIotService {
    */
   attachDebugHandlers() {
     this.client.on('reconnect', () => {
-      console.debug('reconnect');
+      console.log('reconnect');
     });
 
     this.client.on('offline', () => {
-      console.debug('offline');
+      console.log('offline');
     });
 
     this.client.on('error', (err) => {
-      console.debug('iot client error', err);
+      console.log('iot client error', err);
     });
 
     this.client.on('message', (topic, message) => {
