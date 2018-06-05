@@ -24,7 +24,7 @@ export default class AwsIotService {
   initClient(options) {
     const clientId = `chat-user-${Math.floor((Math.random() * 1000000) + 1)}`;
 
-    this.client = new DeviceSdk.device({
+    this.client = DeviceSdk.device({
       region: options.region || CONFIG.awsRegion,
 
       // AWS IoT Host endpoint
