@@ -170,7 +170,19 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
     // identities.
     //
     AWS.config.region = 'ap-southeast-1';
-    
+    var clientId = `MyRaspberry-${Math.floor((Math.random() * 1000000) + 1)}`;
+    var option = {
+      region: AWS.config.region,
+      host: 'a1mfymhqf477u9.iot.ap-southeast-1.amazonaws.com',
+      clientId: clientId,
+      protocol: 'wss',
+      maximumReconnectTimeMs: 8000,
+      debug: true,
+      accessKeyId: this.credentialSubset.accessKeyId,
+      secretKey: this.credentialSubset.secretAccessKey,
+      sessionToken: this.credentialSubset.sessionToken
+    }
+    this.client = new AwsIotService(true, option);
     // console.log(credentialSubset)
     console.log(this.client)
       var currentUser = this.cognitoUtil.getCurrentUser();
@@ -195,8 +207,9 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
                if (error) {
                  console.log(error);
                }
-   
-              //  const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
+               //console.log(AWS.config.credentials);
+              const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
+              this.client.updateWebSocketCredentials(accessKeyId, secretAccessKey, sessionToken)
               //  credentialSubset = { accessKeyId, secretAccessKey, sessionToken };
               //  console.log(credentialSubset)
              });
@@ -208,19 +221,7 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
 
        //vẫn dùng public access
        //ko connect khi login bằng cognito???
-    var clientId = `MyRaspberry-${Math.floor((Math.random() * 1000000) + 1)}`;
-    var option = {
-      region: AWS.config.region,
-      host: 'a1mfymhqf477u9.iot.ap-southeast-1.amazonaws.com',
-      clientId: clientId,
-      protocol: 'wss',
-      maximumReconnectTimeMs: 8000,
-      debug: true,
-      accessKeyId: this.credentialSubset.accessKeyId,
-      secretKey: this.credentialSubset.secretAccessKey,
-      sessionToken: this.credentialSubset.sessionToken
-    }
-    this.client = new AwsIotService(true, option);
+    
 
     //Sự kiện nhận message
         // message.data --> topic

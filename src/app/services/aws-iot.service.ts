@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import * as DeviceSdk from 'aws-iot-device-sdk';
+import DeviceSdk from 'aws-iot-device-sdk';
 import { CONFIG } from './../routes/config';
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
@@ -49,12 +49,11 @@ export default class AwsIotService {
       // initialized with empty strings
       accessKeyId: options.accessKeyId || '',
       secretKey: options.secretKey || '',
-      // sessionToken: options.sessionToken || '',
+      sessionToken: options.sessionToken || '',
 
       // // Let redux handle subscriptions
       // autoResubscribe: (typeof options.debug === 'undefined') ? false : options.autoResubscribe,
     });
-    console.log(this.client)
   }
   disconnect() {
     this.client.end();
