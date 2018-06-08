@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { MenuToggleService } from '../../services/menu-toggle.service';
 import { UserLoginService } from '../../services/login.service';
+import { Router } from '@angular/router';
 
 declare var jquery:any;
 declare var $ :any;
@@ -36,6 +37,7 @@ export class HeaderComponent implements OnInit {
   }
 
   constructor(public isToggle : MenuToggleService,
+    private router: Router,
   private userSerivce: UserLoginService) {
   }
 
@@ -62,6 +64,8 @@ export class HeaderComponent implements OnInit {
     return this.isToggle.onToggleMenu();
   }
   logout(){
-      this.userSerivce.logout()
+      this.userSerivce.logout();
+      sessionStorage.clear();
+      this.router.navigate(['/']);
   } 
 }

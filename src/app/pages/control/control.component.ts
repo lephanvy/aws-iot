@@ -18,10 +18,10 @@ import { UserLoginService } from '../../services/login.service';
 export class ControlComponent implements  OnInit, LoggedInCallback{
 
   // Khai báo biến nhận về
-  Temper_SP: number;
+  Temper_SP_Run: number;
   Temper_PV1: number;
   Temper_PV2: number;
-  Level_SP: number;
+  Level_SP_Run: number;
   Level_PV: number;
   Run: number;
   ActFreq: number;
@@ -29,9 +29,9 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
   Pump_In: number;
   Pump_Cir: number;
   Pump_Out: number;
-  Kp: number;
-  Ki: number;
-  Kd: number;
+  Kp_Run: number;
+  Ki_Run: number;
+  Kd_Run: number;
   No_Batch: number;
   // Khai báo biến gửi đi
   sendKp: number;
@@ -56,7 +56,6 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
   sendPID: string;
 
   test: number;
-  temperature;
   client;
   value = 50;
   color = 'primary';
@@ -88,7 +87,11 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
     private userService: UserLoginService,
 
   ) {
-    
+   // sessionStorage có công dụng tương tự như cookie, sẽ lưu trữ thông tin trên browser mà người dùng đang truy cập
+   // Thông thường chúng ta sử dụng Session để lưu thông tin đăng nhập, giỏ hàng hoặc những dữ liệu mang tính chất tạm thời 
+   // và mỗi client sẽ có dữ liệu khác nhau
+   // Không gửi dữ liệu lên server, dữ liệu bị mất khi đóng trình duyệt.
+
    this.credentialSubset = JSON.parse(sessionStorage.getItem('awscrenditals'));
     // console.log(this.cognitoUtil.getCognitoCreds());
     this.dataSource_tank = {
@@ -160,8 +163,6 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
 
 
   
-
-
     this.userService.isAuthenticated(this);
     //this.mqtt =new AwsIotService(true, option );
     //
@@ -170,7 +171,19 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
     // identities.
     //
     AWS.config.region = 'ap-southeast-1';
-    
+    var clientId = `MyRaspberry-${Math.floor((Math.random() * 1000000) + 1)}`;
+    var option = {
+      region: AWS.config.region,
+      host: 'a1mfymhqf477u9.iot.ap-southeast-1.amazonaws.com',
+      clientId: clientId,
+      protocol: 'wss',
+      maximumReconnectTimeMs: 8000,
+      debug: true,
+      accessKeyId: this.credentialSubset.accessKeyId,
+      secretKey: this.credentialSubset.secretAccessKey,
+      sessionToken: this.credentialSubset.sessionToken
+    }
+    this.client = new AwsIotService(true, option);
     // console.log(credentialSubset)
     console.log(this.client)
       var currentUser = this.cognitoUtil.getCurrentUser();
@@ -195,34 +208,19 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
                if (error) {
                  console.log(error);
                }
-   
-              //  const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
+               //console.log(AWS.config.credentials);
+              const { accessKeyId, secretAccessKey, sessionToken } = AWS.config.credentials;
+              this.client.updateWebSocketCredentials(accessKeyId, secretAccessKey, sessionToken)
               //  credentialSubset = { accessKeyId, secretAccessKey, sessionToken };
               //  console.log(credentialSubset)
              });
            }
          });
        }
-       console.log(this.temperature); 
+      
 
 
-       //vẫn dùng public access
-       //ko connect khi login bằng cognito???
-    var clientId = `MyRaspberry-${Math.floor((Math.random() * 1000000) + 1)}`;
-    var option = {
-      region: AWS.config.region,
-      host: 'a1mfymhqf477u9.iot.ap-southeast-1.amazonaws.com',
-      clientId: clientId,
-      protocol: 'wss',
-      maximumReconnectTimeMs: 8000,
-      debug: true,
-     /* accessKeyId: this.credentialSubset.accessKeyId,
-      secretKey: this.credentialSubset.secretAccessKey,*/
-       accessKeyId:'AKIAJ3DTSVPKS5KBLSSA',// this.credentialSubset.accessKeyId,
-      secretKey: '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' ,//this.credentialSubset.secretAccessKey,
-     // sessionToken: this.credentialSubset.sessionToken
-    }
-    this.client = new AwsIotService(true, option);
+    
 
     //Sự kiện nhận message
         // message.data --> topic
@@ -240,12 +238,12 @@ export class ControlComponent implements  OnInit, LoggedInCallback{
     this.Pump_Cir = parseInt(plcdata.Pump_Cir)
     this.Pump_Out = parseInt(plcdata.Pump_Out)
     this.ActFreq = parseFloat(plcdata.ActFreq)
-    this.Kp = parseFloat(plcdata.Kp)
-    this.Ki = parseFloat(plcdata.Ki)
-    this.Kd = parseFloat(plcdata.Kd )
-    this.Level_SP = parseFloat(plcdata.Level_SP)
+    this.Kp_Run = parseFloat(plcdata.Kp_Run)
+    this.Ki_Run = parseFloat(plcdata.Ki_Run)
+    this.Kd_Run = parseFloat(plcdata.Kd_Run)
+    this.Level_SP_Run = parseFloat(plcdata.Level_SP_Run)
     this.Level_PV = parseFloat(plcdata.Level_PV)
-    this.Temper_SP = parseFloat(plcdata.Temper_SP)
+    this.Temper_SP_Run = parseFloat(plcdata.Temper_SP_Run)
     this.Temper_PV1 = parseFloat(plcdata.Temper_PV1)
     this.Temper_PV2 = parseFloat(plcdata.Temper_PV2)
     this.No_Batch = parseInt(plcdata.No_Batch)
@@ -418,6 +416,9 @@ function addLeadingZero(num) {
     if (!isLoggedIn)
       this.router.navigate(['/login']);
   }
- // ngOnDestroy() {
- // }
+// ngOnDestroy() {
+ //  this.client.disconnect();
+// }
+
+
 }

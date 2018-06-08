@@ -29,6 +29,7 @@ export class UserLoginService {
         let sts = new STS(clientParams);
         sts.getCallerIdentity(function (err, data) {
             console.log("UserLoginService: Successfully set the AWS credentials");
+            alert("Successfully logged in")
             callback.cognitoCallback(null, session);
         });
     }
@@ -136,6 +137,7 @@ export class UserLoginService {
             });
         } else {
             console.log("UserLoginService: can't retrieve the current user");
+            alert("Can't retrieve the current user. Please login!");
             callback.isLoggedIn("Can't retrieve the CurrentUser", false);
         }
     }

@@ -54,7 +54,6 @@ export default class AwsIotService {
       // // Let redux handle subscriptions
       // autoResubscribe: (typeof options.debug === 'undefined') ? false : options.autoResubscribe,
     });
-    console.log(this.client)
   }
   disconnect() {
     this.client.end();

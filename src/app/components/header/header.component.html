@@ -13,7 +13,7 @@
     </md-card>
   </md-toolbar>
   <md-menu #appMenu="mdMenu">
-    <button md-menu-item>
+    <!-- <button md-menu-item>
       <md-icon>settings</md-icon>
       <span>Account Settings</span>
     </button>
@@ -29,9 +29,10 @@
     <button md-menu-item>
       <md-icon>payment</md-icon>
       <span>My Payment</span>
-    </button>
+    </button> -->
+    <a routerLink="/login"><button md-menu-item ><md-icon>exit_to_app</md-icon> Log In</button></a>
     <button md-menu-item (click)="logout()">
-      <md-icon>exit_to_app</md-icon>
+      <md-icon>power_settings_new</md-icon>
       <span>Log Out</span>
     </button>
   </md-menu>

@@ -19,10 +19,10 @@ var chart_temperpv
 })
 export class ChartLinePageComponent implements OnInit {
  // Khai báo biến nhận về
- Temper_SP: number;
+ Temper_SP_Run: number;
  Temper_PV1: number;
  Temper_PV2: number;
- Level_SP: number;
+ Level_SP_Run: number;
  Level_PV: number;
  Run: number;
  ActFreq: number;
@@ -30,9 +30,6 @@ export class ChartLinePageComponent implements OnInit {
  Pump_In: number;
  Pump_Cir: number;
  Pump_Out: number;
- Kp: number;
- Ki: number;
- Kd: number;
  No_Batch: number;
  // Khai báo biến gửi đi
  sendKp: number;
@@ -231,10 +228,10 @@ events_temper;
    }
 
   ngOnInit() {
-    chart_levelpv = 
-    chart_levelsp = 
-    chart_tempersp= 
-    chart_temperpv= 
+    chart_levelpv 
+    chart_levelsp  
+    chart_tempersp 
+    chart_temperpv 
     this.client.onMessage().subscribe(message => {
       console.log(message);
       console.log((message.payload.toString()));
@@ -246,20 +243,17 @@ events_temper;
     this.Pump_Cir = parseInt(plcdata.Pump_Cir)
     this.Pump_Out = parseInt(plcdata.Pump_Out)
     this.ActFreq = parseFloat(plcdata.ActFreq)
-    this.Kp = parseFloat(plcdata.Kp)
-    this.Ki = parseFloat(plcdata.Ki)
-    this.Kd = parseFloat(plcdata.Kd )
-    this.Level_SP = parseFloat(plcdata.Level_SP)
+    this.Level_SP_Run = parseFloat(plcdata.Level_SP_Run)
     this.Level_PV = parseFloat(plcdata.Level_PV)
-    this.Temper_SP = parseFloat(plcdata.Temper_SP)
+    this.Temper_SP_Run = parseFloat(plcdata.Temper_SP_Run)
     this.Temper_PV1 = parseFloat(plcdata.Temper_PV1)
     this.Temper_PV2 = parseFloat(plcdata.Temper_PV2)
     this.No_Batch = parseInt(plcdata.No_Batch)
    // this.dataSource_tank.value = this.Level_PV;
   //  this.dataSource_thermo.value = this.Temper_PV1;
     chart_levelpv = parseFloat(plcdata.Level_PV)
-    chart_levelsp = parseFloat(plcdata.Level_SP)
-    chart_tempersp= parseFloat(plcdata.Temper_SP)
+    chart_levelsp = parseFloat(plcdata.Level_SP_Run)
+    chart_tempersp= parseFloat(plcdata.Temper_SP_Run)
     chart_temperpv= parseFloat(plcdata.Temper_PV1)
 
     
