@@ -24,57 +24,24 @@ export class ChartLinePageComponent implements OnInit {
  Temper_PV2: number;
  Level_SP_Run: number;
  Level_PV: number;
- Run: number;
- ActFreq: number;
- Auto_Man: number;
- Pump_In: number;
- Pump_Cir: number;
- Pump_Out: number;
- No_Batch: number;
+
  // Khai báo biến gửi đi
- sendKp: number;
- sendKi: number;
- sendKd: number;
  sendStart: number;
  sendStop: number;
- sendLevel_SP: number;
- sendTemper_SP: number;
  sendEmergency: number;
  sendReset: number;
- // Biến tạm
- plcdata;
- onstyle;
- offstyle;
- auto_man_string: string;
- progressbarvalue: number;
- progressbarbuffer: number;
- process_string: string;
 
- datafromWeb: string;
-
- test: number;
- temperature;
  client;
- value = 50;
- color = 'primary';
- mode = 'indeterminate';
- modeOne = 'determinate';
+
  // Tank indicator
  id_tank = 'chart1';
  width_tank = 200;
  height_tank = 280;
  type_tank = 'cylinder';
  //error message
- errorMessage;
+
  // Fusion Chart
  dataFormat = 'json';
- dataSource_tank;
- credentialSubset;
- //Thermometer
- type_thermo = 'thermometer';
- width_thermo = 150;
- height_thermo = 195;
- dataSource_thermo;
 
  //Line chart
  type_line = 'realtimelinedy';
@@ -86,7 +53,7 @@ events_level;
 events_temper;
 
   constructor(
-    //private trendService : TrendService
+  
     
   ) {
 
@@ -97,7 +64,6 @@ events_temper;
         "drawAnchors":'0',
         "showSecondaryLimits":"0", 
         "caption": "Level",
-       // "subCaption": "Harry's Supermart",
         "captionFontSize": "20",
        // "subcaptionFontSize": "14",
         "baseFontColor" : "#333333",
@@ -151,7 +117,6 @@ events_temper;
         {
             "seriesname": "Current Value",
             "showvalues": "0",
-        //    "parentyaxis": "S",
             "data": [
                 { "value": "0" }
             ]
@@ -163,7 +128,6 @@ events_temper;
         "showSecondaryLimits":"0", 
         "drawAnchors":'0',
         "caption": "Temperature",
-       // "subCaption": "Harry's Supermart",
         "captionFontSize": "20",
        // "subcaptionFontSize": "14",
         "baseFontColor" : "#333333",
@@ -217,7 +181,6 @@ events_temper;
         {
             "seriesname": "Current Value",
             "showvalues": "0",
-        //    "parentyaxis": "S",
             "data": [
                 { "value": "0" }
             ]
@@ -237,20 +200,12 @@ events_temper;
       console.log((message.payload.toString()));
       let plcdata = JSON.parse(message.payload.toString());
    
-    this.Run = parseInt(plcdata.Run) 
-    this.Auto_Man = parseInt(plcdata.Auto_Man)
-    this.Pump_In = parseInt(plcdata.Pump_In)
-    this.Pump_Cir = parseInt(plcdata.Pump_Cir)
-    this.Pump_Out = parseInt(plcdata.Pump_Out)
-    this.ActFreq = parseFloat(plcdata.ActFreq)
     this.Level_SP_Run = parseFloat(plcdata.Level_SP_Run)
     this.Level_PV = parseFloat(plcdata.Level_PV)
     this.Temper_SP_Run = parseFloat(plcdata.Temper_SP_Run)
     this.Temper_PV1 = parseFloat(plcdata.Temper_PV1)
     this.Temper_PV2 = parseFloat(plcdata.Temper_PV2)
-    this.No_Batch = parseInt(plcdata.No_Batch)
-   // this.dataSource_tank.value = this.Level_PV;
-  //  this.dataSource_thermo.value = this.Temper_PV1;
+
     chart_levelpv = parseFloat(plcdata.Level_PV)
     chart_levelsp = parseFloat(plcdata.Level_SP_Run)
     chart_tempersp= parseFloat(plcdata.Temper_SP_Run)
